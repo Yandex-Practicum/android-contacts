@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+    <solid android:color="@android:color/transparent" />
+    <stroke
+        android:width="@dimen/stack_image_view_icon_border"
+        android:color="@color/color_white" />
+    <padding
+        android:bottom="@dimen/stack_image_view_icon_border"
+        android:left="@dimen/stack_image_view_icon_border"
+        android:right="@dimen/stack_image_view_icon_border"
+        android:top="@dimen/stack_image_view_icon_border" />
+</shape>

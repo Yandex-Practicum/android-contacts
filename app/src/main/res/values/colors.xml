@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">@color/color_blue</color>
+
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#1A1B22</color>
+    <color name="color_blue">#005FFF</color>
+    <color name="color_text_grey">#AEAFB4</color>
+    <color name="color_light_grey">#E6E8EB</color>
+    <color name="color_super_light_grey">#F0F1F3</color>
+    <color name="color_red">#F54543</color>
+    <color name="color_green">#33B471</color>
+
+    <color name="color_white_50">#80FFFFFF</color>
+    <color name="color_blue_50">#80005FFF</color>
+
+</resources>

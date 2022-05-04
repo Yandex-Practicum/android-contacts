@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Контакты</string>
+
+    <string name="menu_sort">Сортировка</string>
+    <string name="menu_filter">Фильтр</string>
+    <string name="menu_search">Поиск</string>
+
+    <string name="nothing_found">Ничего не нашлось</string>
+    <string name="go_to_settings">Перейти в настройки</string>
+
+    <string name="reset">Сбросить</string>
+    <string name="apply">Применить</string>
+
+    <string name="sort_by_name">По имени (А-Я / A-Z)</string>
+    <string name="sort_by_name_reversed">По имени (Я-А / Z-A)</string>
+    <string name="sort_by_surname">По фамилии (А-Я / A-Z)</string>
+    <string name="sort_by_surname_reversed">По фамилии (Я-А / Z-A)</string>
+
+    <string name="filter_contact_type_all">Выбрать все</string>
+    <string name="filter_contact_type_telegram">Telegram</string>
+    <string name="filter_contact_type_whatsapp">WhatsApp</string>
+    <string name="filter_contact_type_viber">Viber</string>
+    <string name="filter_contact_type_signal">Signal</string>
+    <string name="filter_contact_type_threema">Threema</string>
+    <string name="filter_contact_type_phone">Номер телефона</string>
+    <string name="filter_contact_type_email">E-mail</string>
+
+</resources>

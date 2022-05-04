@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="StackImageView">
+        <attr name="iconItemSize" format="dimension" />
+        <attr name="borderSize" format="dimension" />
+        <attr name="iconsCount" format="integer" />
+        <attr name="iconOffset" format="dimension" />
+    </declare-styleable>
+</resources>
