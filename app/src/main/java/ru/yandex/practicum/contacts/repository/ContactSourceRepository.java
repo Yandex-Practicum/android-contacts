@@ -11,7 +11,6 @@ import android.provider.ContactsContract;
 import android.provider.ContactsContract.Groups;
 import android.provider.ContactsContract.RawContacts;
 import android.provider.ContactsContract.Settings;
-import android.text.TextUtils;
 
 import androidx.annotation.Nullable;
 
@@ -55,9 +54,7 @@ public class ContactSourceRepository {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toSet());
 
-        final Set<ContactSource> contentResolverSources = getContentResolverAccounts().stream()
-                .filter(this::isNotEmpty)
-                .collect(Collectors.toSet());
+        final Set<ContactSource> contentResolverSources = new HashSet<>(getContentResolverAccounts());
 
         contactSources.addAll(accountSources);
         contactSources.addAll(contentResolverSources);
@@ -121,6 +118,7 @@ public class ContactSourceRepository {
                 return Constants.StorageType.THREEMA;
             default:
                 return name;
+//                return TextUtils.isEmpty(name) ? "" : name;
         }
     }
 
@@ -139,10 +137,6 @@ public class ContactSourceRepository {
         } catch (Exception ignored) {
 
         }
-    }
-
-    private boolean isNotEmpty(ContactSource source) {
-        return !TextUtils.isEmpty(source.getName()) && !TextUtils.isEmpty(source.getType());
     }
 
     private boolean containsRegularPhoneSource(Set<ContactSource> contactSources) {

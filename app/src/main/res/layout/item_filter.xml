@@ -34,6 +34,7 @@
         app:layout_constraintEnd_toStartOf="@+id/selected"
         app:layout_constraintStart_toEndOf="@+id/logo"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginStart="0dp"
         tools:text="Telegram" />
 
     <CheckBox
