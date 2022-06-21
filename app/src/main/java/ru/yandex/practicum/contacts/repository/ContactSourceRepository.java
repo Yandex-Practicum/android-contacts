@@ -118,7 +118,6 @@ public class ContactSourceRepository {
                 return Constants.StorageType.THREEMA;
             default:
                 return name;
-//                return TextUtils.isEmpty(name) ? "" : name;
         }
     }
 
