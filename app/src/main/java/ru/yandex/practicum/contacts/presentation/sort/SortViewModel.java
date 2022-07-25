@@ -69,6 +69,7 @@ public class SortViewModel extends BaseBottomSheetViewModel {
 
     static class UiState {
         public boolean isApplyEnable = false;
-        @Nullable public SortType newSelectedSortType = null;
+        @Nullable
+        public SortType newSelectedSortType = null;
     }
 }

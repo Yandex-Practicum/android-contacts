@@ -17,16 +17,16 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import ru.yandex.practicum.contacts.interactor.ContactMerger;
+import ru.yandex.practicum.contacts.mapper.ContactUiMapper;
 import ru.yandex.practicum.contacts.model.Contact;
 import ru.yandex.practicum.contacts.model.ContactSource;
 import ru.yandex.practicum.contacts.model.ContactType;
 import ru.yandex.practicum.contacts.model.MergedContact;
-import ru.yandex.practicum.contacts.interactor.ContactMerger;
-import ru.yandex.practicum.contacts.repository.ContactRepository;
-import ru.yandex.practicum.contacts.repository.ContactSourceRepository;
-import ru.yandex.practicum.contacts.mapper.ContactUiMapper;
 import ru.yandex.practicum.contacts.presentation.main.model.MenuClick;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
+import ru.yandex.practicum.contacts.repository.ContactRepository;
+import ru.yandex.practicum.contacts.repository.ContactSourceRepository;
 import ru.yandex.practicum.contacts.utils.java.ThreadUtils;
 import ru.yandex.practicum.contacts.utils.model.MergedContactUtils;
 
