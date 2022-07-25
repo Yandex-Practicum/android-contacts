@@ -23,10 +23,8 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     private final Drawable dividerFirst;
     @NonNull
     private final Drawable dividerOther;
-
-    private int mOrientation;
-
     private final Rect mBounds = new Rect();
+    private int mOrientation;
 
     public DividerItemDecoration(@NonNull Context context, @DrawableRes int dividerFirst, @DrawableRes int dividerOther, int orientation) {
         this.dividerFirst = ContextUtils.requireDrawable(context, dividerFirst);

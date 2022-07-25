@@ -26,6 +26,25 @@ public class SortDialogFragment extends BaseBottomSheetDialogFragment<SortViewMo
         super(SortViewModel.class);
     }
 
+    public static SortDialogFragment newInstance(SortType selectedSortType) {
+        final SortDialogFragment fragment = new SortDialogFragment();
+        fragment.setArguments(createBundle(selectedSortType));
+        return fragment;
+    }
+
+    public static SortType from(@Nullable Bundle bundle) {
+        if (bundle == null) {
+            return SortType.BY_NAME;
+        }
+        return (SortType) bundle.getSerializable(ARG_SELECTED_SORT_TYPE);
+    }
+
+    private static Bundle createBundle(SortType sortType) {
+        final Bundle bundle = new Bundle();
+        bundle.putSerializable(ARG_SELECTED_SORT_TYPE, sortType);
+        return bundle;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -57,24 +76,5 @@ public class SortDialogFragment extends BaseBottomSheetDialogFragment<SortViewMo
             getParentFragmentManager().setFragmentResult(REQUEST_KEY, createBundle(state.newSelectedSortType));
             dismiss();
         }
-    }
-
-    public static SortDialogFragment newInstance(SortType selectedSortType) {
-        final SortDialogFragment fragment = new SortDialogFragment();
-        fragment.setArguments(createBundle(selectedSortType));
-        return fragment;
-    }
-
-    public static SortType from(@Nullable Bundle bundle) {
-        if (bundle == null) {
-            return SortType.BY_NAME;
-        }
-        return (SortType) bundle.getSerializable(ARG_SELECTED_SORT_TYPE);
-    }
-
-    private static Bundle createBundle(SortType sortType) {
-        final Bundle bundle = new Bundle();
-        bundle.putSerializable(ARG_SELECTED_SORT_TYPE, sortType);
-        return bundle;
     }
 }

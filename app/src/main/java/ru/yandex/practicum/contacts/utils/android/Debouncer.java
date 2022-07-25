@@ -12,11 +12,6 @@ public class Debouncer<T> {
     private static final int DELAY = 500;
 
     private final OnValueUpdateListener<T> listener;
-
-    public Debouncer(OnValueUpdateListener<T> listener) {
-        this.listener = listener;
-    }
-
     @SuppressWarnings("unchecked")
     private final Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -28,6 +23,10 @@ public class Debouncer<T> {
             super.handleMessage(message);
         }
     };
+
+    public Debouncer(OnValueUpdateListener<T> listener) {
+        this.listener = listener;
+    }
 
     public void updateValue(T value) {
         final Message message = Message.obtain(handler, MESSAGE_ID, value);

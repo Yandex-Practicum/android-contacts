@@ -28,6 +28,26 @@ public class FilterContactTypeDialogFragment extends BaseBottomSheetDialogFragme
         super(FilterContactTypeViewModel.class);
     }
 
+    public static FilterContactTypeDialogFragment newInstance(Set<ContactType> selectedContactTypes) {
+        final FilterContactTypeDialogFragment fragment = new FilterContactTypeDialogFragment();
+        fragment.setArguments(createBundle(selectedContactTypes));
+        return fragment;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static Set<ContactType> from(@Nullable Bundle bundle) {
+        if (bundle == null) {
+            return Collections.emptySet();
+        }
+        return (Set<ContactType>) bundle.getSerializable(ARG_SELECTED_FILTER_CONTACT_TYPE);
+    }
+
+    private static Bundle createBundle(Set<ContactType> contactTypes) {
+        final Bundle bundle = new Bundle();
+        bundle.putSerializable(ARG_SELECTED_FILTER_CONTACT_TYPE, new HashSet<>(contactTypes));
+        return bundle;
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -60,25 +80,5 @@ public class FilterContactTypeDialogFragment extends BaseBottomSheetDialogFragme
             getParentFragmentManager().setFragmentResult(REQUEST_KEY, createBundle(state.newSelectedContactTypes));
             dismiss();
         }
-    }
-
-    public static FilterContactTypeDialogFragment newInstance(Set<ContactType> selectedContactTypes) {
-        final FilterContactTypeDialogFragment fragment = new FilterContactTypeDialogFragment();
-        fragment.setArguments(createBundle(selectedContactTypes));
-        return fragment;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static Set<ContactType> from(@Nullable Bundle bundle) {
-        if (bundle == null) {
-            return Collections.emptySet();
-        }
-        return (Set<ContactType>) bundle.getSerializable(ARG_SELECTED_FILTER_CONTACT_TYPE);
-    }
-
-    private static Bundle createBundle(Set<ContactType> contactTypes) {
-        final Bundle bundle = new Bundle();
-        bundle.putSerializable(ARG_SELECTED_FILTER_CONTACT_TYPE, new HashSet<>(contactTypes));
-        return bundle;
     }
 }

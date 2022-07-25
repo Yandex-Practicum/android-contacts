@@ -22,11 +22,9 @@ import ru.yandex.practicum.contacts.utils.android.ContextUtils;
 public class SplashActivity extends AppCompatActivity {
 
     private static final int ANIMATION_TIME = 250;
-
+    private SplashActivityBinding binding;
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), this::onPermissionResult);
-
-    private SplashActivityBinding binding;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

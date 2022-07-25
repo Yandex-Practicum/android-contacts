@@ -26,8 +26,8 @@ import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ActivityMainBinding;
 import ru.yandex.practicum.contacts.model.ContactType;
 import ru.yandex.practicum.contacts.presentation.filter.FilterContactTypeDialogFragment;
-import ru.yandex.practicum.contacts.presentation.sort.SortDialogFragment;
 import ru.yandex.practicum.contacts.presentation.main.model.MenuClick;
+import ru.yandex.practicum.contacts.presentation.sort.SortDialogFragment;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 import ru.yandex.practicum.contacts.ui.widget.DividerItemDecoration;
 import ru.yandex.practicum.contacts.utils.widget.EditTextUtils;
@@ -37,12 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String SORT_TAG = "SORT_TAG";
     public static final String FILTER_TAG = "FILTER_TAG";
-
+    private final Map<Integer, BadgeDrawable> badges = new HashMap<>();
     private ActivityMainBinding binding;
     private MainViewModel viewModel;
     private ContactAdapter adapter;
-
-    private final Map<Integer, BadgeDrawable> badges = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
         badges.put(R.id.menu_search, createBadge());
     }
 
-    private void attachBadges(){
+    private void attachBadges() {
         for (Map.Entry<Integer, BadgeDrawable> entry : badges.entrySet()) {
             BadgeUtils.attachBadgeDrawable(entry.getValue(), binding.toolbar, entry.getKey());
         }
