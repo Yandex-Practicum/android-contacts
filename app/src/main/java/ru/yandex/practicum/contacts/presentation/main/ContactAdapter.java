@@ -23,13 +23,14 @@ import java.util.Objects;
 
 import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemContactBinding;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
+import ru.yandex.practicum.contacts.presentation.sort.SortTypeUI;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
     private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
-    );
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<ContactUi>()).build()); // заменили
 
     @NonNull
     @Override
@@ -93,7 +94,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<ContactUi> {
+    /*static class ListDiffCallback extends DiffUtil.ItemCallback<ContactUi> { удаляю во все 3 адаптерах данный класс
 
         @Override
         public boolean areItemsTheSame(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
@@ -110,5 +111,5 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         public Object getChangePayload(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
             return newItem;
         }
-    }
+    }*/
 }
