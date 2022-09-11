@@ -3,9 +3,9 @@ package ru.yandex.practicum.contacts.presentation.base;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-public class BaseListDiffCallback<T extends ListDiffInterface> extends DiffUtil.ItemCallback<T>  {
+public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T>  {
 
-    public T getChangePayload(@NonNull T oldItem, @NonNull T newItem) {
+    public Object getChangePayload(@NonNull T oldItem, @NonNull T newItem) {
         return newItem;
     }
 
