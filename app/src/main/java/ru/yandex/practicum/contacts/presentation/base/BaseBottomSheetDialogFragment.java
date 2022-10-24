@@ -16,7 +16,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import ru.yandex.practicum.contacts.databinding.FragmentBottomSheetBinding;
 
-public abstract class BaseBottomSheetDialogFragment<T extends BaseBottomSheetViewModel> extends BottomSheetDialogFragment {
+public abstract class
+
+
+
+
+
+BaseBottomSheetDialogFragment<T extends BaseBottomSheetViewModel> extends BottomSheetDialogFragment {
 
     private final Class<T> viewModelClass;
 
