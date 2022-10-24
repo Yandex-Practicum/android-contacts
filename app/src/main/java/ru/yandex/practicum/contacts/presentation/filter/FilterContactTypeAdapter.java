@@ -26,7 +26,7 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
 
     private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback()).build()
     );
 
     private final Consumer<FilterContactTypeUi> clickListener;
@@ -86,7 +86,7 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
+    static class BaseListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
 
         @Override
         public boolean areItemsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
