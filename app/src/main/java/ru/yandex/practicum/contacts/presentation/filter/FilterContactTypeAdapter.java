@@ -17,6 +17,7 @@ import java.util.function.Consumer;
 
 import ru.yandex.practicum.contacts.databinding.ItemFilterBinding;
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
@@ -24,9 +25,10 @@ import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
 
 public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> {
 
+
     private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<FilterContactTypeUi>()).build()
     );
 
     private final Consumer<FilterContactTypeUi> clickListener;
@@ -86,7 +88,7 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         }
     }
 
-    static class BaseListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
+ /*   static class BaseListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
 
         @Override
         public boolean areItemsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
@@ -103,5 +105,5 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         public Object getChangePayload(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
             return newItem;
         }
-    }
+    }*/
 }
