@@ -3,7 +3,7 @@ package ru.yandex.practicum.contacts.utils;
 public class Constants {
 
     public static class Packages {
-        public static final String GOOGLE = "com.google";
+        public static final String GOOGLE = "com.google1";
         public static final String TELEGRAM = "org.telegram.messenger";
         public static final String SIGNAL = "org.thoughtcrime.securesms";
         public static final String WHATSAPP = "com.whatsapp";
