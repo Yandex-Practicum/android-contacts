@@ -5,9 +5,9 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
-import ru.yandex.practicum.contacts.presentation.base.ListDiffCallback;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class ContactUi implements ListDiffCallback<ContactUi> {
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -43,8 +43,8 @@ public class ContactUi implements ListDiffCallback<ContactUi> {
     }
 
     @Override
-    public boolean theSameAs(ContactUi contactUi) {
-        return this.hashCode() == contactUi.hashCode();
+    public boolean theSameAs(ContactUi iteam) {
+        return this.hashCode() == iteam.hashCode();
     }
 
     @Override

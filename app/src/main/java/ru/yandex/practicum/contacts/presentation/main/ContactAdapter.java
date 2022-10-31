@@ -93,7 +93,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<ContactUi> {
+   /* static class ListDiffCallback extends DiffUtil.ItemCallback<ContactUi> {
 
         @Override
         public boolean areItemsTheSame(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
@@ -110,5 +110,5 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         public Object getChangePayload(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
             return newItem;
         }
-    }
+    } */
 }
