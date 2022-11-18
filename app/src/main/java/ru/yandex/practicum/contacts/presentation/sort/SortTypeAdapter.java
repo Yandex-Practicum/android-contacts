@@ -21,7 +21,7 @@ import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
-public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> implements ListDiffInterface<SortTypeUI> {
+public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
@@ -34,8 +34,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         this.clickListener = clickListener;
     }
 
-    @NonNull
-    @Override
+    @Override @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final ItemSortBinding binding = ItemSortBinding.inflate(inflater, parent, false);
@@ -54,11 +53,6 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
 
     public void setItems(List<SortTypeUI> items) {
         differ.submitList(items);
-    }
-
-    @Override
-    public boolean theSameAs(SortTypeUI other) {
-        return false;
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
