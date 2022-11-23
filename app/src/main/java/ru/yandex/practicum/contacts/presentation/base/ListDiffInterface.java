@@ -1,8 +1,10 @@
 package ru.yandex.practicum.contacts.presentation.base;
 
-public interface ListDiffInterface {
+public interface ListDiffInterface<T> {
 
-    public boolean theSameAs();
+    boolean theSameAs(T t);
 
-    public boolean equals(Object object);
+    boolean equals(Object object);
 }
+
+
