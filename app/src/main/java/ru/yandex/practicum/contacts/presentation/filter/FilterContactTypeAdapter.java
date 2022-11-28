@@ -17,6 +17,7 @@ import java.util.function.Consumer;
 
 import ru.yandex.practicum.contacts.databinding.ItemFilterBinding;
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
@@ -86,11 +87,11 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
+        static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
 
         @Override
         public boolean areItemsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return oldItem.getContactType() == newItem.getContactType();
+         return oldItem.getContactType() == newItem.getContactType();
         }
 
         @Override
