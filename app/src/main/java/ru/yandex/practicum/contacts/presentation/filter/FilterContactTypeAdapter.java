@@ -70,7 +70,7 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
             this.binding.getRoot().setOnClickListener(v -> clickListener.accept(data));
             this.binding.selected.setOnClickListener(v -> clickListener.accept(data));
         }
-
+//
         public void bind(FilterContactTypeUi data) {
             this.data = data;
             final int sortResId = FilterContactTypeUtils.getStringRes(data.getContactType());
