@@ -33,7 +33,7 @@ public class SortTypeUI implements ListDiffInterface<SortTypeUI>{
         if (selected != that.selected) return false;
         return sortType == that.sortType;
     }
-
+//
     @Override
     public int hashCode() {
         int result = sortType.hashCode();

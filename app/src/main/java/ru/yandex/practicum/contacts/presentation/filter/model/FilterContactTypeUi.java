@@ -39,7 +39,7 @@ public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeU
         result = 31 * result + (selected ? 1 : 0);
         return result;
     }
-
+//
     @Override
     public boolean theSameAs(FilterContactTypeUi FilterContactTypeUi){
         return this.getContactType() == FilterContactTypeUi.getContactType();

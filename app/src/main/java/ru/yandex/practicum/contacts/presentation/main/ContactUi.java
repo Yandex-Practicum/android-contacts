@@ -25,7 +25,7 @@ public class ContactUi implements ListDiffInterface<ContactUi> {
         this.photo = photo;
         this.types = types;
     }
-
+//
     public String getName() {
         return name;
     }

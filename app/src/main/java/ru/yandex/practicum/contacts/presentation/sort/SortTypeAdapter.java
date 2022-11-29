@@ -73,7 +73,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
             binding.text.setText(sortResId);
             binding.selected.setVisibility(data.isSelected() ? View.VISIBLE : View.GONE);
         }
-
+//
         private int resource(SortType sortType) {
             switch (sortType) {
                 case BY_NAME:
