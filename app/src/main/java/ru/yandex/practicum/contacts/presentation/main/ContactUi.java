@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+import ru.yandex.practicum.contacts.presentation.sort.SortTypeUI;
 
-public class ContactUi {
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -39,6 +41,16 @@ public class ContactUi {
 
     public List<ContactType> getTypes() {
         return types;
+    }
+
+    /*@Override
+    public boolean theSameAs(contactUi sortTypeUI) {
+        return false;
+    }*/
+
+    @Override
+    public boolean theSameAs(ContactUi contactUi) {
+        return this.hashCode()==contactUi.hashCode();
     }
 
     @Override
