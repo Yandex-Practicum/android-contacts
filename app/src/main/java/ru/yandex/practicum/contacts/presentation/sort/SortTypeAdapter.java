@@ -18,6 +18,7 @@ import java.util.function.Consumer;
 import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 
 public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
 
