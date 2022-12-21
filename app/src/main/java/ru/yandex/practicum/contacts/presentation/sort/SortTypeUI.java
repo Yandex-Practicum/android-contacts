@@ -7,9 +7,8 @@ import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
 public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
     @Override
-    public boolean theSameAs(ListDiffInterface<SortTypeUI> listDiffInterface) {
-        return this.getSortType() == ((SortTypeUI)listDiffInterface).getSortType();
-
+    public boolean theSameAs(SortTypeUI other) {
+        return this.getSortType() == other.getSortType();
     }
 
     private final SortType sortType;

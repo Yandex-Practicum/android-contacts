@@ -8,14 +8,11 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeU
 import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 
 public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
-    public BaseListDiffCallback() {
-        super();
-    }
 
     @Nullable
     @Override
     public Object getChangePayload(@NonNull T oldItem, @NonNull T newItem) {
-        return super.getChangePayload(oldItem, newItem);
+        return newItem;
     }
 
     @Override
@@ -25,6 +22,6 @@ public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUt
 
     @Override
     public boolean areContentsTheSame(@NonNull T oldItem, @NonNull T newItem) {
-        return false;
+        return oldItem.equals(newItem);
     }
 }
