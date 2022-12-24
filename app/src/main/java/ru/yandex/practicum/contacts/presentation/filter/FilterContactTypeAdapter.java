@@ -88,16 +88,4 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         }
     }
 
-    //static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
-     //   @Override
-      //  public boolean areContentsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-      //      return oldItem.equals(newItem);
-     //   }
-
-     //   @Nullable
-      //  @Override
-      //  public Object getChangePayload(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-      //      return newItem;
-      //  }
-  //  }
 }
