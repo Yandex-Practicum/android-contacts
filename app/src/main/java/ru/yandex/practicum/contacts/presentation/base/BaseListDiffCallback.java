@@ -25,6 +25,6 @@ public class BaseListDiffCallback <T extends ListDiffCallback<T> > extends DiffU
         return newItem;
     }
 
-    ///
+    //// я ненавижу гит ////
 }
 
