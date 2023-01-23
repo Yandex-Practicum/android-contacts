@@ -60,13 +60,21 @@ public class MainViewModel extends AndroidViewModel {
         return uiStateLiveDate;
     }
 
+    // Метод загрузки контактов с устройства пользователя при запуске приложения
     public void initLoading() {
+        // Источники, из которых можно получить контакты: телефонная книга, telegram, whatsapp и тд
         final Set<ContactSource> sources = contactSourceRepository.getAllContactSources();
-        final List<String> sourceNames = sources.stream()
-                .map(ContactSource::getName)
-                .collect(Collectors.toList());
+
+        // TODO Задача 1: создать коллекцию sourceNames с именами источников
+
+//        final List<String> sourceNames = sources.stream()
+//                .map(ContactSource::getName)
+//                .collect(Collectors.toList());
+
+        // Метод для получения списка контактов по имени источников
         final List<Contact> contacts = contactRepository.getContacts(sourceNames);
 
+        // Don't worry about it
         final List<MergedContact> allContacts = contactMerger.getMergedContacts(contacts, sources);
         state.setAllContacts(allContacts);
         mapContactsAndUpdate();

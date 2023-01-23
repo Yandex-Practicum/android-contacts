@@ -33,10 +33,14 @@ public class ContactMerger {
     private MergedContact mergeContact(Map.Entry<String, List<Contact>> entry, Map<String, ContactSource> sources) {
         final List<Contact> contacts = entry.getValue();
         final Contact contact = contacts.get(0);
-        final List<String> contactSources = contacts.stream()
-                .map(each -> Objects.requireNonNull(sources.get(each.getSource())).getPublicName())
-                .distinct()
-                .collect(Collectors.toList());
+
+        //TODO Задача 4: получить список уникальных имен источников содержащих данный контакт (contact)
+
+//        final List<String> contactSources = contacts.stream()
+//                .map(each -> Objects.requireNonNull(sources.get(each.getSource())).getPublicName())
+//                .distinct()
+//                .collect(Collectors.toList());
+
         return new MergedContact(
                 contact.getId(),
                 contact.getFirstName(),

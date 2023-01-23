@@ -54,11 +54,19 @@ public class SortViewModel extends BaseBottomSheetViewModel {
         return uiStateLiveDate;
     }
 
+    // Метод создает элементы интерфейса для отображения списка в диалоге сортировки
     private void updateSortTypes() {
+        // Все возможные типы сортировок
         final SortType[] sortTypes = SortType.values();
-        final List<SortTypeUI> sortTypesUi = Arrays.stream(sortTypes)
-                .map(sortType -> new SortTypeUI(sortType, Objects.equals(sortType, selectedSortType)))
-                .collect(Collectors.toList());
+
+        // TODO Задача 2: получить список элементов класса SortTypeUI,
+        // выбранный элемент хранится в переменной selectedSortType.
+
+//        final List<SortTypeUI> sortTypesUi = Arrays.stream(sortTypes)
+//                .map(sortType -> new SortTypeUI(sortType, Objects.equals(sortType, selectedSortType)))
+//                .collect(Collectors.toList());
+
+        // Отдаем список для отображения в диалоге
         sortTypesLiveDate.setValue(sortTypesUi);
     }
 
