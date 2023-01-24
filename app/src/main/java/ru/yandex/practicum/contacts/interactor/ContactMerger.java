@@ -4,9 +4,11 @@ import android.text.TextUtils;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -34,12 +36,8 @@ public class ContactMerger {
         final List<Contact> contacts = entry.getValue();
         final Contact contact = contacts.get(0);
 
-        //TODO Задача 4: получить список уникальных имен источников содержащих данный контакт (contact)
-
-//        final List<String> contactSources = contacts.stream()
-//                .map(each -> Objects.requireNonNull(sources.get(each.getSource())).getPublicName())
-//                .distinct()
-//                .collect(Collectors.toList());
+        //TODO Задача 4: создать коллекцию с уникальными именами источников
+        // список уникальных имен источников содержащих данный контакт (contact)
 
         return new MergedContact(
                 contact.getId(),

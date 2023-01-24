@@ -9,6 +9,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
@@ -66,10 +67,6 @@ public class MainViewModel extends AndroidViewModel {
         final Set<ContactSource> sources = contactSourceRepository.getAllContactSources();
 
         // TODO Задача 1: создать коллекцию sourceNames с именами источников
-
-//        final List<String> sourceNames = sources.stream()
-//                .map(ContactSource::getName)
-//                .collect(Collectors.toList());
 
         // Метод для получения списка контактов по имени источников
         final List<Contact> contacts = contactRepository.getContacts(sourceNames);

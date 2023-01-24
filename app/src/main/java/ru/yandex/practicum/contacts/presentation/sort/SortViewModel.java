@@ -3,6 +3,7 @@ package ru.yandex.practicum.contacts.presentation.sort;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -61,10 +62,6 @@ public class SortViewModel extends BaseBottomSheetViewModel {
 
         // TODO Задача 2: получить список элементов класса SortTypeUI,
         // выбранный элемент хранится в переменной selectedSortType.
-
-//        final List<SortTypeUI> sortTypesUi = Arrays.stream(sortTypes)
-//                .map(sortType -> new SortTypeUI(sortType, Objects.equals(sortType, selectedSortType)))
-//                .collect(Collectors.toList());
 
         // Отдаем список для отображения в диалоге
         sortTypesLiveDate.setValue(sortTypesUi);

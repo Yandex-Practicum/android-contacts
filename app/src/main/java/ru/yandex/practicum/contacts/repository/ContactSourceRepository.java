@@ -140,13 +140,10 @@ public class ContactSourceRepository {
 
     // Метод проверяет, содержит ли список источников контактов телефонную книгу с устройства пользователя
     private boolean containsRegularPhoneSource(Set<ContactSource> contactSources) {
-        // TODO Задача 3: метод должен возвращать true, если в contactSources элемент с типом,
+        // TODO Задача 3: метод должен возвращать true, если в contactSources элемент с типом (getType),
         // начинающимся на "com.google" или "com.android" или "com.qualcomm"; иначе вернуть false.
         // Подсказка: в классе String есть удобный метод startsWith
 
-//        return contactSources.stream().anyMatch(account -> {
-//            final String accountType = account.getType();
-//            return accountType.startsWith("com.google") || accountType.startsWith("com.android") || accountType.startsWith("com.qualcomm");
-//        });
+
     }
 }
