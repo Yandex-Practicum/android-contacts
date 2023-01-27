@@ -5,7 +5,9 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
-    public class ContactUi implements ListDiffInterface<ContactUi> {
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+
+public class ContactUi implements ListDiffInterface<ContactUi> {
     private final String name;
     private final String phone;
     private final String photo;

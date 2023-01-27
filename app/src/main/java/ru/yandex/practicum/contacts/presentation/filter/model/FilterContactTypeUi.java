@@ -7,6 +7,7 @@ import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeUi> {
     private final FilterContactType contactType;
     private final boolean selected;
+    private FilterContactTypeUi filterContactTypeUi;
 
     public FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
         this.contactType = contactType;
@@ -27,6 +28,7 @@ public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeU
 
     @Override
     public boolean theSameAs(FilterContactTypeUi filterContactTypeUi) {
+        this.filterContactTypeUi = filterContactTypeUi;
         return false;
     }
 
