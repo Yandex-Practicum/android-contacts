@@ -42,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
     private MainViewModel viewModel;
     private ContactAdapter adapter;
 
-    private int x=0;
-
     private final Map<Integer, BadgeDrawable> badges = new HashMap<>();
 
     @Override
