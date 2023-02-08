@@ -1,4 +1,4 @@
-package ru.yandex.practicum.contacts.mapper;
+package ru.yandex.practicum.contacts.model.mapper;
 
 import android.text.TextUtils;
 
