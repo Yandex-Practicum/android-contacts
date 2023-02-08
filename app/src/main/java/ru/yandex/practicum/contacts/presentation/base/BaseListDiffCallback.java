@@ -7,8 +7,7 @@ import org.jetbrains.annotations.Nullable;
 
 //import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 
-public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
-
+public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T>  {
 
     @Nullable
     @Override
