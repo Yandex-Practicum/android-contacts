@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -191,7 +189,4 @@ public class MainActivity extends AppCompatActivity {
         viewModel.search();
     }
 
-    private void toast(@StringRes int res) {
-        Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
-    }
 }
