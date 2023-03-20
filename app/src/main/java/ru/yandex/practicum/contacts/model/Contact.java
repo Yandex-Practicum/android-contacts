@@ -97,10 +97,6 @@ public class Contact {
         return thumbnailUri;
     }
 
-    public boolean theSameAs(Object item) {
-        return this.hashCode() == item.hashCode();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
