@@ -1,5 +1,6 @@
 package ru.yandex.practicum.contacts.presentation.base;
 
+import ru.yandex.practicum.contacts.model.Contact;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 import ru.yandex.practicum.contacts.presentation.sort.SortTypeUI;
@@ -13,37 +14,22 @@ public interface ListDiffInterface<T> {
 
 
     // из ContactUi
-    public boolean equals(Object o) {
+    default boolean equals(Object o) {
+        Object that;
+        that = null;
+
         if (o instanceof ContactUi) {
-
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            ContactUi contact = (ContactUi) o;
-
-            if (!name.equals(contact.name)) return false;
-            if (!phone.equals(contact.phone)) return false;
-            if (!photo.equals(contact.photo)) return false;
-            return types.equals(contact.types);
+            that = (Contact) o;
         } else if (o instanceof FilterContactTypeUi) {
             //из FilterContactTypeUi
-
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-
-            FilterContactTypeUi that = (FilterContactTypeUi) o;
-
-            if (selected != that.selected) return false;
-            return contactType == that.contactType;
+            that = (FilterContactTypeUi) o;
         } else if (o instanceof SortTypeUI) {
             //из SortTypeUI
-            if (this == o) return true;
+            that = (SortTypeUI) o;
+        }
+        if (this == that) {
+            return true;
             if (o == null || getClass() != o.getClass()) return false;
-
-            SortTypeUI that = (SortTypeUI) o;
-
-            if (selected != that.selected) return false;
-            return sortType == that.sortType;
-            }
         }
     }
+}
