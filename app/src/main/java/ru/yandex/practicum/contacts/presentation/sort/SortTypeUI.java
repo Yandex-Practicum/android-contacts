@@ -30,13 +30,12 @@ public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return false;
+    }
 
-        SortTypeUI that = (SortTypeUI) o;
-
-        if (selected != that.selected) return false;
-        return sortType == that.sortType;
+    @Override
+    public boolean theSameAs(SortTypeUI sortTypeUI) {
+        return ListDiffInterface.super.theSameAs(sortTypeUI);
     }
 
     @Override

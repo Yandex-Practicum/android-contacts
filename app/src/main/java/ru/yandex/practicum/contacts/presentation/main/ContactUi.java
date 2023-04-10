@@ -49,15 +49,12 @@ public class ContactUi implements ListDiffInterface<ContactUi> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return false;
+    }
 
-        ContactUi contact = (ContactUi) o;
-
-        if (!name.equals(contact.name)) return false;
-        if (!phone.equals(contact.phone)) return false;
-        if (!photo.equals(contact.photo)) return false;
-        return types.equals(contact.types);
+    @Override
+    public boolean theSameAs(ContactUi contactUi) {
+        return ListDiffInterface.super.theSameAs(contactUi);
     }
 
     @Override

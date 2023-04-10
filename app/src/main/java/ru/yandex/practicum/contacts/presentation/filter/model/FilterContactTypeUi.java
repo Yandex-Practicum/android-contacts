@@ -29,13 +29,12 @@ public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeU
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        return false;
+    }
 
-        FilterContactTypeUi that = (FilterContactTypeUi) o;
-
-        if (selected != that.selected) return false;
-        return contactType == that.contactType;
+    @Override
+    public boolean theSameAs(FilterContactTypeUi filterContactTypeUi) {
+        return ListDiffInterface.super.theSameAs(filterContactTypeUi);
     }
 
     @Override
