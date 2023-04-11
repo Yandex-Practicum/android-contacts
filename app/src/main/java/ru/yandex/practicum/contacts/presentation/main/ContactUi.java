@@ -1,5 +1,4 @@
 package ru.yandex.practicum.contacts.presentation.main;
-
 import androidx.annotation.NonNull;
 
 import java.util.List;
