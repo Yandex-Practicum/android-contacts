@@ -40,7 +40,6 @@ public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
             return false;
         }
         return this.getSortType() == tobject.getSortType();
-        //return  this.selected==tobject.selected && this.sortType==tobject.sortType;
     }
 
     @Override

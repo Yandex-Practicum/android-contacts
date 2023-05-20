@@ -39,7 +39,6 @@ public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeU
             return false;
         }
         return this.getContactType() == tobject.getContactType();
-        //return  this.selected==tobject.selected && this.contactType==tobject.contactType;
     }
 
     @Override

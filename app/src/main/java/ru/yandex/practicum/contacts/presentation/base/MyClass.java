@@ -15,19 +15,6 @@ public class MyClass implements ListDiffInterface<MyClass> {
     public MyClass(int id, String name) {
         this.id = id;
         this.name = name;
-        SortTypeUI asort = new SortTypeUI(SortType.BY_NAME,false);
-        ContactType t = ContactType.EMAIL;
-        ArrayList<ContactType> tl = new ArrayList<ContactType>();
-        tl.add(t);
-        ContactUi con = new ContactUi("test","t222","f",tl);
-        //interface
-        ArrayList<ListDiffInterface> arr = new ArrayList<ListDiffInterface>();
-        arr.add(asort);
-        arr.add(con);
-        for (ListDiffInterface arritem: arr)
-        {
-            boolean ress = arritem.theSameAs(arritem);
-        }
     }
 
     public boolean equals(Object object) {
@@ -35,7 +22,6 @@ public class MyClass implements ListDiffInterface<MyClass> {
             return false;
         }
         MyClass myClass = (MyClass) object;
-        //this.name==myClass.name
         return this.id == myClass.id && this.name.equals(myClass.name);
     }
 

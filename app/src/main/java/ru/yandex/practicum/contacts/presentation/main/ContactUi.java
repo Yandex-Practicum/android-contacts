@@ -61,16 +61,6 @@ public class ContactUi implements ListDiffInterface<ContactUi> {
             return false;
         }
         return this.hashCode() == tobject.hashCode();
-        //boolean res = this.name.equals(tobject.name) &&
-        //      this.phone.equals(tobject.phone) &&
-        //    this.photo.equals(tobject.photo);
-        //if (res)
-        //{
-        //    boolean res2 = this.types.containsAll(tobject.types);
-        //    return  res2;
-        //}
-
-        //return res;
     }
 
     @Override
