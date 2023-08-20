@@ -1,5 +1,5 @@
 package ru.yandex.practicum.contacts.presentation.filter;
-
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +21,17 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
-
+/* Работа с класами (2.) отвечает за список типов
+ контактов, по которым можно отфильтровать контакты: */
 public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> {
 
-    private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
+    private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>
+            (
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
-    );
+         // Шаг 4. Замена инициализации
+         // new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<FilterContactTypeUi>()).build()
+            );
 
     private final Consumer<FilterContactTypeUi> clickListener;
 
@@ -57,7 +61,8 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         differ.submitList(items);
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder
+    {
 
         private final ItemFilterBinding binding;
 
@@ -84,9 +89,14 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
                 binding.logo.setImageResource(iconRes);
             }
         }
-    }
+    } // static class ViewHolder extends RecyclerView.ViewHolder
+}
+    // повторение class ListDiffCallback (1.)
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
+    /*
+    Можно вырезать, заменили на BaseListDiffCallback
+    static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi>
+    {
 
         @Override
         public boolean areItemsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
@@ -103,5 +113,6 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         public Object getChangePayload(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
             return newItem;
         }
-    }
-}
+    } // static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi>
+    */
+
