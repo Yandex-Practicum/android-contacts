@@ -9,20 +9,15 @@ import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
 public  class ContactUi implements ListDiffInterface <ContactUi>{
 
-    @Override
-    public boolean theSameAs(ContactUi t){
-      return   this.hashCode() == t.hashCode();
-    }
-
-
-
-
-
     private final String name;
     private final String phone;
     private final String photo;
     private final List<ContactType> types;
 
+    @Override
+    public boolean theSameAs(ContactUi t){
+        return   this.hashCode() == t.hashCode();
+    }
     public ContactUi(
             @NonNull String name,
             @NonNull String phone,

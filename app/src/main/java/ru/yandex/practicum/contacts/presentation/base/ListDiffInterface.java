@@ -8,6 +8,4 @@ public boolean theSameAs(T t);
 public boolean equals(Object t);
 
 
-    // T t;
-
 }

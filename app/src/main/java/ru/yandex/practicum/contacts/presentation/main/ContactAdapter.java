@@ -24,12 +24,10 @@ import ru.yandex.practicum.contacts.databinding.ItemContactBinding;
 import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
-
     private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
             new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<ContactUi>()).build()
     );
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -37,7 +35,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         final ItemContactBinding binding = ItemContactBinding.inflate(inflater, parent, false);
         return new ViewHolder(binding);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(differ.getCurrentList().get(position));
