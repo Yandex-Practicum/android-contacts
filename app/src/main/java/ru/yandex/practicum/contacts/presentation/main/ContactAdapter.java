@@ -42,7 +42,6 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(differ.getCurrentList().get(position));
     }
-
     @Override
     public int getItemCount() {
         return differ.getCurrentList().size();
