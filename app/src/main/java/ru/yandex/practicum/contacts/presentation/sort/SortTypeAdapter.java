@@ -17,13 +17,17 @@ import java.util.function.Consumer;
 
 import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
-public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
+public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> implements ListDiffInterface<SortTypeUI> {
 
+    public boolean theSameAs(SortTypeUI sortTypeUI){
+        return this.getSortType() == sortTypeUI.getSortType();
+    }
     private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback <SortTypeUI>).build()
     );
 
     private final Consumer<SortTypeUI> clickListener;
