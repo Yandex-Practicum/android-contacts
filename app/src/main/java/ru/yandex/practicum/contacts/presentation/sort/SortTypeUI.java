@@ -6,7 +6,7 @@ import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
 public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
-
+@Override
     public boolean theSameAs(SortTypeUI sortTypeUI){
         return this.getSortType() == sortTypeUI.getSortType();
     }
