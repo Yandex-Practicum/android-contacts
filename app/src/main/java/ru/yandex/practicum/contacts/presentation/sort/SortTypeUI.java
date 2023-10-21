@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
-public class SortTypeUI implements ListDiffInterface {
+public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
 
     private final SortType sortType;
     private final boolean selected;
@@ -42,10 +42,10 @@ public class SortTypeUI implements ListDiffInterface {
     }
 
     @Override
-    public boolean theSameAs(Object compareObject) {
+    public boolean theSameAs(SortTypeUI sortTypeUI) {
+        //Строка ниже как будто и не нужна, другой класс не может быть, а @NonNull не даст попасть сюда Null
+        if (sortTypeUI == null || getClass() != sortTypeUI.getClass()) return false;
 
-        if (compareObject == null || getClass() != compareObject.getClass()) return false;
-
-        return this.getSortType() == ((SortTypeUI) compareObject).getSortType();
+        return this.getSortType() == sortTypeUI.getSortType();
     }
 }

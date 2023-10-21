@@ -8,7 +8,7 @@ import ru.yandex.practicum.contacts.model.ContactType;
 import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
 
-public class ContactUi implements ListDiffInterface {
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -66,10 +66,10 @@ public class ContactUi implements ListDiffInterface {
     }
 
     @Override
-    public boolean theSameAs(Object compareObject) {
+    public boolean theSameAs(ContactUi contactUi) {
+        //Строка ниже как будто и не нужна, другой класс не может быть, а @NonNull не даст попасть сюда Null
+        if (contactUi == null || getClass() != contactUi.getClass()) return false;
 
-        if (compareObject == null || getClass() != compareObject.getClass()) return false;
-
-        return this.hashCode() == ((ContactUi) compareObject).hashCode();
+        return this.hashCode() == contactUi.hashCode();
     }
 }

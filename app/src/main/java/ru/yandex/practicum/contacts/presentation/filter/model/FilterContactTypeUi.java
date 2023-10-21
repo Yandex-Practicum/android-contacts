@@ -2,10 +2,10 @@ package ru.yandex.practicum.contacts.presentation.filter.model;
 
 import androidx.annotation.NonNull;
 
-import ru.yandex.practicum.contacts.model.ContactType;
+
 import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class FilterContactTypeUi implements ListDiffInterface {
+public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeUi> {
 
     private final FilterContactType contactType;
     private final boolean selected;
@@ -42,10 +42,10 @@ public class FilterContactTypeUi implements ListDiffInterface {
     }
 
     @Override
-    public boolean theSameAs(Object compareObject) {
+    public boolean theSameAs(FilterContactTypeUi filterContactTypeUi) {
+        //Строка ниже как будто и не нужна, другой класс не может быть, а @NonNull не даст попасть сюда Null
+        if (filterContactTypeUi == null || getClass() != filterContactTypeUi.getClass()) return false;
 
-        if (compareObject == null || getClass() != compareObject.getClass()) return false;
-
-        return this.getContactType() == ((FilterContactTypeUi) compareObject).getContactType();
+        return this.getContactType() == filterContactTypeUi.getContactType();
     }
 }
