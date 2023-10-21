@@ -5,8 +5,10 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class ContactUi {
+
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -61,5 +63,13 @@ public class ContactUi {
         result = 31 * result + photo.hashCode();
         result = 31 * result + types.hashCode();
         return result;
+    }
+
+    @Override
+    public boolean theSameAs(ContactUi contactUi) {
+        //Строка ниже как будто и не нужна, другой класс не может быть, а @NonNull не даст попасть сюда Null
+        if (contactUi == null || getClass() != contactUi.getClass()) return false;
+
+        return this.hashCode() == contactUi.hashCode();
     }
 }
