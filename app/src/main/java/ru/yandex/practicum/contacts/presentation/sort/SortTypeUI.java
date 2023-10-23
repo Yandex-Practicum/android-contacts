@@ -6,7 +6,7 @@ import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
-public class SortTypeUI implements ListDiffInterface<FilterContactTypeUi> {
+public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
     // 2 шаг унаследовать интерфейс
 
     private final SortType sortType;
@@ -27,8 +27,8 @@ public class SortTypeUI implements ListDiffInterface<FilterContactTypeUi> {
 
     // 2 шаг реализовать метод theSameAs
     @Override
-    public <T> boolean theSameAs(T t) {
-        return this == t;
+    public boolean theSameAs(SortTypeUI si) {
+        return this.getSortType() == si.getSortType();
     }
 
     @Override
