@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.AdapterListUpdateCallback;
 import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.AsyncListDiffer;
@@ -17,17 +16,16 @@ import java.util.function.Consumer;
 import ru.yandex.practicum.contacts.databinding.ItemFilterBinding;
 import ru.yandex.practicum.contacts.model.ContactType;
 import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
-import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
 
-public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> implements ListDiffInterface<FilterContactTypeUi> {
+public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new NewClassCallBack()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<FilterContactTypeUi>()).build()
     );
 
     private final Consumer<FilterContactTypeUi> clickListener;
@@ -58,14 +56,6 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         differ.submitList(items);
     }
 
-    @Override
-    public boolean theSameAs(FilterContactTypeUi filterContactTypeUi) {
-        return this.hashCode() == filterContactTypeUi.hashCode();
-    }
-    public boolean equals(Object object) {
-        return false;
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemFilterBinding binding;
@@ -92,25 +82,6 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
                 binding.logo.setVisibility(View.VISIBLE);
                 binding.logo.setImageResource(iconRes);
             }
-        }
-    }
-
-    static class NewClassCallBack extends BaseListDiffCallback<FilterContactTypeUi> {
-
-        @Override
-        public boolean areItemsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return oldItem.getContactType() == newItem.getContactType();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return oldItem.equals(newItem);
-        }
-
-        @Nullable
-        @Override
-        public Object getChangePayload(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return newItem;
         }
     }
 }
