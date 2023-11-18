@@ -53,10 +53,6 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         differ.submitList(items);
     }
 
-    public boolean equals(Object object) {
-        return false;
-    }
-
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemSortBinding binding;
