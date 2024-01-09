@@ -6,3 +6,4 @@ public abstract class BaseBottomSheetViewModel extends ViewModel {
     abstract public void onApplyClick();
     abstract public void onResetClick();
 }
+
