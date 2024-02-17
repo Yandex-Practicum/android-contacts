@@ -2,6 +2,7 @@ package ru.yandex.practicum.contacts.presentation.main;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,7 +35,7 @@ import ru.yandex.practicum.contacts.utils.widget.EditTextUtils;
 
 @SuppressLint("UnsafeExperimentalUsageError")
 public class MainActivity extends AppCompatActivity {
-
+nbhvgvbk.
     public static final String SORT_TAG = "SORT_TAG";
     public static final String FILTER_TAG = "FILTER_TAG";
 

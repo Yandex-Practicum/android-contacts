@@ -1,5 +1,5 @@
 package ru.yandex.practicum.contacts;
-
+//test
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
