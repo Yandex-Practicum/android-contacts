@@ -42,6 +42,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         return new ViewHolder(binding, clickListener);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(differ.getCurrentList().get(position));
