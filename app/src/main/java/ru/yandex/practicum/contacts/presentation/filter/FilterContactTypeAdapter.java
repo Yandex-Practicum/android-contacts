@@ -88,6 +88,7 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
         }
     }
 
+
     static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
 
         @Override

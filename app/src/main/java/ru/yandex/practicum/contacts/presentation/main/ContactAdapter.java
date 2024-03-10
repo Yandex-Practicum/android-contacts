@@ -70,6 +70,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             });
         }
 
+
         public void bind(ContactUi contact) {
             binding.name.setText(contact.getName());
             loadAvatar(contact);

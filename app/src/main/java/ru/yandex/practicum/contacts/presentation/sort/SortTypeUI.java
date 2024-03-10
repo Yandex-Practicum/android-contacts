@@ -10,6 +10,7 @@ public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
     private final SortType sortType;
     private final boolean selected;
 
+
     public SortTypeUI(@NonNull SortType sortType, boolean selected) {
         this.sortType = sortType;
         this.selected = selected;
