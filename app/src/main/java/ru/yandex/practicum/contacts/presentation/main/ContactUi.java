@@ -14,7 +14,6 @@ public class ContactUi implements ListDiffInterface<ContactUi> {
     private final String photo;
     private final List<ContactType> types;
 
-
     public ContactUi(
             @NonNull String name,
             @NonNull String phone,

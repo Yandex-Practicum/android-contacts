@@ -6,4 +6,3 @@ public interface ListDiffInterface<T> {
 
     boolean equals(Object obj);
 }
-

@@ -68,7 +68,6 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
             this.binding.getRoot().setOnClickListener(v -> clickListener.accept(data));
         }
 
-
         public void bind(SortTypeUI data) {
             this.data = data;
             final int sortResId = resource(data.getSortType());
