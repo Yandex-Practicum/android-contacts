@@ -15,6 +15,6 @@ public class BaseListDiffCallback
 
     @Override
     public boolean areContentsTheSame(@NonNull T oldItem, @NonNull T newItem) {
-        return oldItem.theSameAs(newItem);
+        return oldItem.equals(newItem);
     }
 }
