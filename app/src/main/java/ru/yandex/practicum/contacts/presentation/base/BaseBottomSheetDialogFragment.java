@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.DiffUtil;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -61,5 +62,30 @@ public abstract class BaseBottomSheetDialogFragment<T extends BaseBottomSheetVie
     public void onDestroy() {
         binding = null;
         super.onDestroy();
+    }
+
+    public interface ListDiffInterface<T> {
+        boolean theSameAs(T other);
+        @Override
+        boolean equals(Object obj);
+    }
+
+    public static class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
+
+        @Override
+        public boolean areItemsTheSame(@NonNull T oldItem, @NonNull T newItem) {
+            return oldItem.theSameAs(newItem);
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull T oldItem, @NonNull T newItem) {
+            return oldItem.equals(newItem);
+        }
+
+        @Nullable
+        @Override
+        public Object getChangePayload(@NonNull T oldItem, @NonNull T newItem) {
+            return newItem;
+        }
     }
 }

@@ -17,17 +17,22 @@ import java.util.function.Consumer;
 
 import ru.yandex.practicum.contacts.databinding.ItemFilterBinding;
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.BaseBottomSheetDialogFragment;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
+import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
-
+import ru.yandex.practicum.contacts.R;
+import ru.yandex.practicum.contacts.databinding.ItemContactBinding;
+import ru.yandex.practicum.contacts.presentation.base.BaseBottomSheetDialogFragment.BaseListDiffCallback;
 public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<FilterContactTypeUi>(new BaseListDiffCallback<>()).build()
     );
+
 
     private final Consumer<FilterContactTypeUi> clickListener;
 
