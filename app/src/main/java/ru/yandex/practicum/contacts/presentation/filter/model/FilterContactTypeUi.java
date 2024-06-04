@@ -2,12 +2,14 @@ package ru.yandex.practicum.contacts.presentation.filter.model;
 
 import androidx.annotation.NonNull;
 
- class FilterContactTypeUI implements ListDiffInterface<FilterContactTypeUI> {
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+
+public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeUi> {
 
     private final FilterContactType contactType;
     private final boolean selected;
 
-    public void FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
+    public FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
         this.contactType = contactType;
         this.selected = selected;
     }
@@ -18,6 +20,11 @@ import androidx.annotation.NonNull;
 
     public boolean isSelected() {
         return selected;
+    }
+
+    @Override
+    public boolean theSameAs(FilterContactTypeUi item) {
+        return this.getContactType() == item.getContactType();
     }
 
     @Override
@@ -37,8 +44,5 @@ import androidx.annotation.NonNull;
         result = 31 * result + (selected ? 1 : 0);
         return result;
     }
-     @Override
-     public boolean theSameAs(@NonNull FilterContactTypeUI newItem) {
-         return this.getContactType() == newItem.getContactType();
-     }
+
 }

@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.AsyncListDiffer;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.sort.SortTypeUI;
 
-public class ContactUi implements ListDiffInterface<ContactUI.ViewHolder>{
-    private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
-            new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<>()).build()
-    );
+public class ContactUi implements ListDiffInterface<ContactUi> {
+
     private final String name;
     private final String phone;
     private final String photo;
@@ -49,6 +48,11 @@ public class ContactUi implements ListDiffInterface<ContactUI.ViewHolder>{
     }
 
     @Override
+    public boolean theSameAs(ContactUi item) {
+        return this.hashCode() == item.hashCode();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -69,8 +73,5 @@ public class ContactUi implements ListDiffInterface<ContactUI.ViewHolder>{
         result = 31 * result + types.hashCode();
         return result;
     }
-    @Override
-    public boolean theSameAs(@NonNull SortTypeUI newItem) {
-        return this.hashCode() == newItem.hashCode();
-    }
+
 }
