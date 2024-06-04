@@ -26,10 +26,7 @@ import ru.yandex.practicum.contacts.databinding.ItemContactBinding;
 
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
-    private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
-            new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
-    );
+
 
     @NonNull
     @Override

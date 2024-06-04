@@ -1,13 +1,20 @@
 package ru.yandex.practicum.contacts.presentation.main;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.AdapterListUpdateCallback;
+import androidx.recyclerview.widget.AsyncDifferConfig;
+import androidx.recyclerview.widget.AsyncListDiffer;
 
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.sort.SortTypeUI;
 
-public class ContactUi {
-
+public class ContactUi implements ListDiffInterface<ContactUI.ViewHolder>{
+    private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
+            new AdapterListUpdateCallback(this),
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<>()).build()
+    );
     private final String name;
     private final String phone;
     private final String photo;
@@ -61,5 +68,9 @@ public class ContactUi {
         result = 31 * result + photo.hashCode();
         result = 31 * result + types.hashCode();
         return result;
+    }
+    @Override
+    public boolean theSameAs(@NonNull SortTypeUI newItem) {
+        return this.hashCode() == newItem.hashCode();
     }
 }
