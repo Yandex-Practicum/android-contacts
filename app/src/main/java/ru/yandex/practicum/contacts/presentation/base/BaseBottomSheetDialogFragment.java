@@ -15,6 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+
 import ru.yandex.practicum.contacts.databinding.FragmentBottomSheetBinding;
 
 public abstract class BaseBottomSheetDialogFragment<T extends BaseBottomSheetViewModel> extends BottomSheetDialogFragment {
@@ -70,7 +71,7 @@ public abstract class BaseBottomSheetDialogFragment<T extends BaseBottomSheetVie
         boolean equals(Object obj);
     }
 
-    public static class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
+    public static class BaseListDiffCallback <T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
 
         @Override
         public boolean areItemsTheSame(@NonNull T oldItem, @NonNull T newItem) {
