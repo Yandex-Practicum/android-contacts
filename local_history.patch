@@ -1,0 +1,182 @@
+Index: app/src/main/java/ru/yandex/practicum/contacts/presentation/sort/SortTypeAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/ru/yandex/practicum/contacts/presentation/sort/SortTypeAdapter.java b/app/src/main/java/ru/yandex/practicum/contacts/presentation/sort/SortTypeAdapter.java
+--- a/app/src/main/java/ru/yandex/practicum/contacts/presentation/sort/SortTypeAdapter.java	
++++ b/app/src/main/java/ru/yandex/practicum/contacts/presentation/sort/SortTypeAdapter.java	(date 1717637116362)
+@@ -1,26 +1,13 @@
+-package ru.yandex.practicum.contacts.presentation.sort;
+-
+-import android.view.LayoutInflater;
+-import android.view.View;
+-import android.view.ViewGroup;
++package ru.yandex.practicum.contacts.presentation.main;
+ 
+ import androidx.annotation.NonNull;
+-import androidx.annotation.Nullable;
+-import androidx.recyclerview.widget.AdapterListUpdateCallback;
+-import androidx.recyclerview.widget.AsyncDifferConfig;
+-import androidx.recyclerview.widget.AsyncListDiffer;
+-import androidx.recyclerview.widget.DiffUtil;
+-import androidx.recyclerview.widget.RecyclerView;
+ 
+ import java.util.List;
+-import java.util.function.Consumer;
+ 
+-import ru.yandex.practicum.contacts.R;
+-import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
+-import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
+-import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
++import ru.yandex.practicum.contacts.model.ContactType;
++import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+ 
+-public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
++public class ContactUi implements ListDiffInterface<ContactUii> {
+ 
+     private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
+             new AdapterListUpdateCallback(this),
+@@ -31,81 +18,71 @@
+ 
+     public SortTypeAdapter(Consumer<SortTypeUI> clickListener) {
+         this.clickListener = clickListener;
+-    }
+-
+-    @NonNull
+-    @Override
+-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+-        final ItemSortBinding binding = ItemSortBinding.inflate(inflater, parent, false);
+-        return new ViewHolder(binding, clickListener);
+-    }
+-
+-    @Override
+-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+-        holder.bind(differ.getCurrentList().get(position));
+-    }
+-
+-    @Override
+-    public int getItemCount() {
+-        return differ.getCurrentList().size();
+-    }
+-
+-    public void setItems(List<SortTypeUI> items) {
+-        differ.submitList(items);
+-    }
++            new AdapterListUpdateCallback(this),
++            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback()).build()
++    );
+ 
+-    static class ViewHolder extends RecyclerView.ViewHolder {
++    private final Consumer<SortTypeUI> clickListener;
+ 
+-        private final ItemSortBinding binding;
++    public SortTypeAdapter(Consumer<SortTypeUI> clickListener) {
++        this.clickListener = clickListener;
++            new AdapterListUpdateCallback(this),
++            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback()).build()
++    );
+ 
+-        private SortTypeUI data;
++    private final Consumer<SortTypeUI> clickListener;
+ 
+-        public ViewHolder(@NonNull ItemSortBinding binding, Consumer<SortTypeUI> clickListener) {
+-            super(binding.getRoot());
+-            this.binding = binding;
+-            this.binding.getRoot().setOnClickListener(v -> clickListener.accept(data));
+-        }
+-
+-        public void bind(SortTypeUI data) {
+-            this.data = data;
+-            final int sortResId = resource(data.getSortType());
+-            binding.text.setText(sortResId);
+-            binding.selected.setVisibility(data.isSelected() ? View.VISIBLE : View.GONE);
+-        }
+-
+-        private int resource(SortType sortType) {
+-            switch (sortType) {
+-                case BY_NAME:
+-                    return R.string.sort_by_name;
+-                case BY_NAME_REVERSED:
+-                    return R.string.sort_by_name_reversed;
+-                case BY_SURNAME:
+-                    return R.string.sort_by_surname;
+-                case BY_SURNAME_REVERSED:
+-                    return R.string.sort_by_surname_reversed;
+-                default:
+-                    throw new IllegalArgumentException("Not supported SortType");
+-            }
+-        }
++    public SortTypeAdapter(Consumer<SortTypeUI> clickListener) {
++        this.clickListener = clickListener;
++    private final String phone;
++    private final String photo;
++    private final List<ContactType> types;
++    public ContactUi(
++            @NonNull String name,
++            @NonNull String phone,
++            @NonNull String photo,
++            @NonNull List<ContactType> types
++    ) {
++        this.name = name;
++        this.phone = phone;
++        this.photo = photo;
++        this.types = types;
++    }
++    public String getName() {
++        return name;
++    }
++    public String getPhone() {
++        return phone;
++    }
++    public String getPhoto() {
++        return photo;
++    }
++    public List<ContactType> getTypes() {
++        return types;
+     }
+-
+-    static class ListDiffCallback extends DiffUtil.ItemCallback<SortTypeUI> {
+ 
+-        @Override
+-        public boolean areItemsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+-            return oldItem.getSortType() == newItem.getSortType();
+-        }
++    @Override
++    public boolean theSameAs(ContactUii item) {
++        return this.hashCode() == item.hashCode();
++    }
+ 
+-        @Override
+-        public boolean areContentsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+-            return oldItem.equals(newItem);
+-        }
+-
+-        @Nullable
+-        @Override
+-        public Object getChangePayload(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+-            return newItem;
+-        }
++    @Override
++    public boolean equals(Object o) {
++        if (this == o) return true;
++        if (o == null || getClass() != o.getClass()) return false;
++        ContactUii contact = (ContactUii) o;
++        if (!name.equals(contact.name)) return false;
++        if (!phone.equals(contact.phone)) return false;
++        if (!photo.equals(contact.photo)) return false;
++        return types.equals(contact.types);
++    }
++    @Override
++    public int hashCode() {
++        int result = name.hashCode();
++        result = 31 * result + phone.hashCode();
++        result = 31 * result + photo.hashCode();
++        result = 31 * result + types.hashCode();
++        return result;
+     }
+-}
++
++}
+\ No newline at end of file
