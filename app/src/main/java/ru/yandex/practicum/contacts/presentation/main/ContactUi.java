@@ -60,7 +60,7 @@ public class ContactUi implements ListDiffInterface<ContactUi> {
         int result = name.hashCode();
         result = 31 * result + phone.hashCode();
         result = 31 * result + photo.hashCode();
-        result = 31;
+        result = 31 * result + types.hashCode();
         return result;
     }
     }
