@@ -24,7 +24,7 @@ public class FilterContactTypeUi implements BaseBottomSheetDialogFragment.ListDi
 
     @Override
     public boolean theSameAs(FilterContactTypeUi other) {
-        return this.contactType == other.contactType && this.selected == other.selected;
+        return this.contactType == other.getContactType();
     }
 
     @Override

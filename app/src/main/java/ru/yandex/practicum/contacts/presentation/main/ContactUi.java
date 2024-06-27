@@ -44,10 +44,7 @@ public class ContactUi implements BaseBottomSheetDialogFragment.ListDiffInterfac
 
     @Override
     public boolean theSameAs(ContactUi other) {
-        if (other == null) {
-            return false;
-        }
-        return this.equals(other);
+        return this.hashCode() == other.hashCode();
     }
 
 
