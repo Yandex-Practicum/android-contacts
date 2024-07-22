@@ -2,6 +2,7 @@ package ru.yandex.practicum.contacts.presentation.sort;
 
 import androidx.annotation.NonNull;
 
+import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
 public class SortTypeUI {
@@ -22,6 +23,9 @@ public class SortTypeUI {
         return selected;
     }
 
+    public boolean theSameAs(@NonNull SortTypeUI newItem) {
+        return this.getSortType() == newItem.getSortType();
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
