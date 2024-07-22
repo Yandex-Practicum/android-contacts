@@ -29,6 +29,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
 
     private final Consumer<SortTypeUI> clickListener;
 
+
     public SortTypeAdapter(Consumer<SortTypeUI> clickListener) {
         this.clickListener = clickListener;
     }

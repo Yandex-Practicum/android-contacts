@@ -12,6 +12,7 @@ public class FilterContactTypeUi {
         this.selected = selected;
     }
 
+
     public FilterContactType getContactType() {
         return contactType;
     }

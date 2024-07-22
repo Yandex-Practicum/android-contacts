@@ -23,6 +23,7 @@ public class SortTypeUI {
         return selected;
     }
 
+
     public boolean theSameAs(@NonNull SortTypeUI newItem) {
         return this.getSortType() == newItem.getSortType();
     }
