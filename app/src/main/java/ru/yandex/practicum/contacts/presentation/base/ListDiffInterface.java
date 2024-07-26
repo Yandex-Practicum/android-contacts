@@ -6,5 +6,5 @@ public interface ListDiffInterface<T> {
 
     boolean theSameAs(T obj);
 
-    boolean equals(Object object);
+    boolean equals(Object anotherItem);
 }
