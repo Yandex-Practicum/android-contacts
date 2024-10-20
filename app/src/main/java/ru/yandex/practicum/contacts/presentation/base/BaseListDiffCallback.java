@@ -5,12 +5,7 @@ import androidx.recyclerview.widget.AsyncListDiffer;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListUpdateCallback;
 
-class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
-
-    private final AsyncListDiffer<T> differ = new AsyncListDiffer<>(
-            (ListUpdateCallback) this,
-            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<T>()).build()
-    );
+public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
 
     public boolean areItemsTheSame(T oldItem, T newItem) {
         return oldItem.theSameAs(newItem);
