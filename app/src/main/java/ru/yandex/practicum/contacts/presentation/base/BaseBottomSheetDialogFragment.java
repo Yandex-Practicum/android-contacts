@@ -22,7 +22,7 @@ public abstract class BaseBottomSheetDialogFragment<T extends BaseBottomSheetVie
 
     protected FragmentBottomSheetBinding binding;
     protected T viewModel;
-
+//hhh
     public BaseBottomSheetDialogFragment(Class<T> viewModelClass) {
         this.viewModelClass = viewModelClass;
     }
