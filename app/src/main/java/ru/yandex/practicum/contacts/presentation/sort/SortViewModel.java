@@ -14,7 +14,7 @@ import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 public class SortViewModel extends BaseBottomSheetViewModel {
 
     private final UiState uiState = new UiState();
-    private final MutableLiveData<List<SortTypeUI>> sortTypesLiveDate = new MutableLiveData<>();
+    private final MutableLiveData<List<SortTypeUi>> sortTypesLiveDate = new MutableLiveData<>();
     private final MutableLiveData<UiState> uiStateLiveDate = new MutableLiveData<>();
 
     private SortType defaultSortType;
@@ -27,7 +27,7 @@ public class SortViewModel extends BaseBottomSheetViewModel {
         updateUiState();
     }
 
-    public void onSortTypeItemClick(SortTypeUI sortType) {
+    public void onSortTypeItemClick(SortTypeUi sortType) {
         selectedSortType = sortType.getSortType();
         updateSortTypes();
         updateUiState();
@@ -46,7 +46,7 @@ public class SortViewModel extends BaseBottomSheetViewModel {
         updateUiState();
     }
 
-    public MutableLiveData<List<SortTypeUI>> getSortTypesLiveDate() {
+    public MutableLiveData<List<SortTypeUi>> getSortTypesLiveDate() {
         return sortTypesLiveDate;
     }
 
@@ -56,8 +56,8 @@ public class SortViewModel extends BaseBottomSheetViewModel {
 
     private void updateSortTypes() {
         final SortType[] sortTypes = SortType.values();
-        final List<SortTypeUI> sortTypesUi = Arrays.stream(sortTypes)
-                .map(sortType -> new SortTypeUI(sortType, Objects.equals(sortType, selectedSortType)))
+        final List<SortTypeUi> sortTypesUi = Arrays.stream(sortTypes)
+                .map(sortType -> new SortTypeUi(sortType, Objects.equals(sortType, selectedSortType)))
                 .collect(Collectors.toList());
         sortTypesLiveDate.setValue(sortTypesUi);
     }

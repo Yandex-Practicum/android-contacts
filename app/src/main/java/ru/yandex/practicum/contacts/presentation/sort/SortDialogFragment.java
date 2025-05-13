@@ -46,7 +46,7 @@ public class SortDialogFragment extends BaseBottomSheetDialogFragment<SortViewMo
         viewModel.init(defaultSortType);
     }
 
-    private void updateSortTypes(List<SortTypeUI> sortTypes) {
+    private void updateSortTypes(List<SortTypeUi> sortTypes) {
         adapter.setItems(sortTypes);
     }
 

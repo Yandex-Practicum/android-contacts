@@ -17,18 +17,19 @@ import java.util.function.Consumer;
 
 import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
 public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
 
-    private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
+    private final AsyncListDiffer<SortTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<SortTypeUi>()).build()
     );
 
-    private final Consumer<SortTypeUI> clickListener;
+    private final Consumer<SortTypeUi> clickListener;
 
-    public SortTypeAdapter(Consumer<SortTypeUI> clickListener) {
+    public SortTypeAdapter(Consumer<SortTypeUi> clickListener) {
         this.clickListener = clickListener;
     }
 
@@ -50,7 +51,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         return differ.getCurrentList().size();
     }
 
-    public void setItems(List<SortTypeUI> items) {
+    public void setItems(List<SortTypeUi> items) {
         differ.submitList(items);
     }
 
@@ -58,15 +59,15 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
 
         private final ItemSortBinding binding;
 
-        private SortTypeUI data;
+        private SortTypeUi data;
 
-        public ViewHolder(@NonNull ItemSortBinding binding, Consumer<SortTypeUI> clickListener) {
+        public ViewHolder(@NonNull ItemSortBinding binding, Consumer<SortTypeUi> clickListener) {
             super(binding.getRoot());
             this.binding = binding;
             this.binding.getRoot().setOnClickListener(v -> clickListener.accept(data));
         }
 
-        public void bind(SortTypeUI data) {
+        public void bind(SortTypeUi data) {
             this.data = data;
             final int sortResId = resource(data.getSortType());
             binding.text.setText(sortResId);
@@ -89,21 +90,21 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<SortTypeUI> {
+    static class ListDiffCallback extends DiffUtil.ItemCallback<SortTypeUi> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+        public boolean areItemsTheSame(@NonNull SortTypeUi oldItem, @NonNull SortTypeUi newItem) {
             return oldItem.getSortType() == newItem.getSortType();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+        public boolean areContentsTheSame(@NonNull SortTypeUi oldItem, @NonNull SortTypeUi newItem) {
             return oldItem.equals(newItem);
         }
 
         @Nullable
         @Override
-        public Object getChangePayload(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+        public Object getChangePayload(@NonNull SortTypeUi oldItem, @NonNull SortTypeUi newItem) {
             return newItem;
         }
     }
