@@ -10,23 +10,23 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 public class FilterContactTypeUtils {
 
     @StringRes
-    public static int getStringRes(FilterContactType contactType) {
+    public static int getStringRes(String contactType) {
         switch (contactType) {
-            case ALL:
+            case FilterContactType.ALL:
                 return R.string.filter_contact_type_all;
-            case TELEGRAM:
+            case FilterContactType.TELEGRAM:
                 return R.string.filter_contact_type_telegram;
-            case WHATS_APP:
+            case FilterContactType.WHATS_APP:
                 return R.string.filter_contact_type_whatsapp;
-            case VIBER:
+            case FilterContactType.VIBER:
                 return R.string.filter_contact_type_viber;
-            case SIGNAL:
+            case FilterContactType.SIGNAL:
                 return R.string.filter_contact_type_signal;
-            case THREEMA:
+            case FilterContactType.THREEMA:
                 return R.string.filter_contact_type_threema;
-            case PHONE:
+            case FilterContactType.PHONE:
                 return R.string.filter_contact_type_phone;
-            case EMAIL:
+            case FilterContactType.EMAIL:
                 return R.string.filter_contact_type_email;
             default:
                 throw new IllegalArgumentException("Not supported SortType");
@@ -34,21 +34,21 @@ public class FilterContactTypeUtils {
     }
 
     @NonNull
-    public static ContactType toContactType(FilterContactType type) {
+    public static ContactType toContactType(String type) {
         switch (type) {
-            case TELEGRAM:
+            case FilterContactType.TELEGRAM:
                 return ContactType.TELEGRAM;
-            case WHATS_APP:
+            case FilterContactType.WHATS_APP:
                 return ContactType.WHATS_APP;
-            case VIBER:
+            case FilterContactType.VIBER:
                 return ContactType.VIBER;
-            case SIGNAL:
+            case FilterContactType.SIGNAL:
                 return ContactType.SIGNAL;
-            case THREEMA:
+            case FilterContactType.THREEMA:
                 return ContactType.THREEMA;
-            case PHONE:
+            case FilterContactType.PHONE:
                 return ContactType.PHONE;
-            case EMAIL:
+            case FilterContactType.EMAIL:
                 return ContactType.EMAIL;
             default:
                 throw new IllegalArgumentException("Not supported FilterContactType");

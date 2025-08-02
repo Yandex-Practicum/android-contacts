@@ -2,24 +2,33 @@ package ru.yandex.practicum.contacts.presentation.sort;
 
 import androidx.annotation.NonNull;
 
-import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class SortTypeUI {
+public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
 
-    private final SortType sortType;
-    private final boolean selected;
+    private final String type;
+    private final boolean isSelected;
 
-    public SortTypeUI(@NonNull SortType sortType, boolean selected) {
-        this.sortType = sortType;
-        this.selected = selected;
+    public SortTypeUI(@NonNull String type, boolean isSelected) {
+        this.type = type;
+        this.isSelected = isSelected;
     }
 
-    public SortType getSortType() {
-        return sortType;
+    public String getType() {
+        return type;
     }
 
     public boolean isSelected() {
-        return selected;
+        return isSelected;
+    }
+
+    public String createLogMessage() {
+        return "Выбран тип сортировки: " + type;
+    }
+
+    @Override
+    public boolean theSameAs(SortTypeUI other) {
+        return this.type.equals(other.type);
     }
 
     @Override
@@ -29,14 +38,14 @@ public class SortTypeUI {
 
         SortTypeUI that = (SortTypeUI) o;
 
-        if (selected != that.selected) return false;
-        return sortType == that.sortType;
+        if (isSelected != that.isSelected) return false;
+        return type.equals(that.type);
     }
 
     @Override
     public int hashCode() {
-        int result = sortType.hashCode();
-        result = 31 * result + (selected ? 1 : 0);
+        int result = type.hashCode();
+        result = 31 * result + (isSelected ? 1 : 0);
         return result;
     }
 }

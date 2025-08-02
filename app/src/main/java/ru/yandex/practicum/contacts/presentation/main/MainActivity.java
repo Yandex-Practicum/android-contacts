@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         binding.searchLayout.resetButton.setOnClickListener(view -> clearSearch());
 
         getSupportFragmentManager().setFragmentResultListener(SortDialogFragment.REQUEST_KEY, this, (requestKey, result) -> {
-            final SortType newSortType = SortDialogFragment.from(result);
+            final String newSortType = SortDialogFragment.from(result);
             viewModel.updateSortType(newSortType);
         });
 
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showSortDialog(SortType sortType) {
+    private void showSortDialog(String sortType) {
         SortDialogFragment.newInstance(sortType).show(getSupportFragmentManager(), SORT_TAG);
     }
 

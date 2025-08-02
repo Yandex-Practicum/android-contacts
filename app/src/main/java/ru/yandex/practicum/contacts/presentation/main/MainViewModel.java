@@ -91,7 +91,7 @@ public class MainViewModel extends AndroidViewModel {
         updateUiState();
     }
 
-    public void updateSortType(SortType sortType) {
+    public void updateSortType(String sortType) {
         state.setSortType(sortType);
         updateBadges();
         mapContactsAndUpdate();
@@ -144,24 +144,24 @@ public class MainViewModel extends AndroidViewModel {
         contactsLiveDate.postValue(uiContacts);
     }
 
-    private Comparator<MergedContact> createComparator(SortType type) {
+    private Comparator<MergedContact> createComparator(String type) {
         switch (type) {
-            case BY_NAME:
+            case SortType.BY_NAME:
                 return createComparator(MergedContact::getFirstName)
                         .thenComparing(createComparator(MergedContact::getSurname))
                         .thenComparing(createComparator(MergedContact::getNormalizedNumber))
                         .thenComparing(createComparator(MergedContact::getEmail));
-            case BY_NAME_REVERSED:
+            case SortType.BY_NAME_REVERSED:
                 return createReversedComparator(MergedContact::getFirstName)
                         .thenComparing(createReversedComparator(MergedContact::getSurname))
                         .thenComparing(createReversedComparator(MergedContact::getNormalizedNumber))
                         .thenComparing(createReversedComparator(MergedContact::getEmail));
-            case BY_SURNAME:
+            case SortType.BY_SURNAME:
                 return createComparator(MergedContact::getSurname)
                         .thenComparing(createComparator(MergedContact::getFirstName))
                         .thenComparing(createComparator(MergedContact::getNormalizedNumber))
                         .thenComparing(createComparator(MergedContact::getEmail));
-            case BY_SURNAME_REVERSED:
+            case SortType.BY_SURNAME_REVERSED:
                 return createReversedComparator(MergedContact::getSurname)
                         .thenComparing(createReversedComparator(MergedContact::getFirstName))
                         .thenComparing(createReversedComparator(MergedContact::getNormalizedNumber))
@@ -232,7 +232,7 @@ public class MainViewModel extends AndroidViewModel {
 
         public static class Actions {
             public Action<Boolean> finishActivity = new Action<>(false);
-            public Action<SortType> showSortTypeDialog = new Action<>(null);
+            public Action<String> showSortTypeDialog = new Action<>(null);
             public Action<Set<ContactType>> showFilterContactTypeDialog = new Action<>(Collections.emptySet());
 
             @NonNull

@@ -1,12 +1,13 @@
 package ru.yandex.practicum.contacts.presentation.filter;
 
-import androidx.lifecycle.MutableLiveData;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,8 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
+
+import androidx.lifecycle.MutableLiveData;
 
 public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
 
@@ -34,7 +37,7 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
     }
 
     public void onFilterTypeItemClick(FilterContactTypeUi filterContactType) {
-        updateSelectedContactTypes(filterContactType.getContactType());
+        updateSelectedContactTypes(filterContactType.getType());
         updateFilterContactTypes();
         updateUiState();
     }
@@ -60,6 +63,10 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
         return uiStateLiveDate;
     }
 
+    public void log(String message) {
+        Log.d("FilterContactTypeViewModel", message);
+    }
+
     private void updateFilterContactTypes() {
         final List<FilterContactTypeUi> filterContactTypesUi = new ArrayList<>();
         final boolean allSelected = selectedFilterContactTypes.size() == ContactType.values().length;
@@ -79,8 +86,8 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
         uiStateLiveDate.setValue(uiState);
     }
 
-    private void updateSelectedContactTypes(FilterContactType type) {
-        if (type == FilterContactType.ALL) {
+    private void updateSelectedContactTypes(String type) {
+        if (Objects.equals(type, FilterContactType.ALL)) {
             if (selectedFilterContactTypes.size() == ContactType.values().length) {
                 selectedFilterContactTypes.clear();
             } else {
@@ -97,6 +104,7 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
     }
 
     static class UiState {
+
         public boolean isApplyEnable = false;
         public Set<ContactType> newSelectedContactTypes = Collections.emptySet();
     }

@@ -1,7 +1,6 @@
 package ru.yandex.practicum.contacts.presentation.sort;
 
-import androidx.annotation.Nullable;
-import androidx.lifecycle.MutableLiveData;
+import android.util.Log;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,16 +10,19 @@ import java.util.stream.Collectors;
 import ru.yandex.practicum.contacts.presentation.base.BaseBottomSheetViewModel;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.MutableLiveData;
+
 public class SortViewModel extends BaseBottomSheetViewModel {
 
     private final UiState uiState = new UiState();
     private final MutableLiveData<List<SortTypeUI>> sortTypesLiveDate = new MutableLiveData<>();
     private final MutableLiveData<UiState> uiStateLiveDate = new MutableLiveData<>();
 
-    private SortType defaultSortType;
-    private SortType selectedSortType;
+    private String defaultSortType;
+    private String selectedSortType;
 
-    public void init(SortType defaultSortType) {
+    public void init(String defaultSortType) {
         this.defaultSortType = defaultSortType;
         this.selectedSortType = defaultSortType;
         updateSortTypes();
@@ -28,7 +30,7 @@ public class SortViewModel extends BaseBottomSheetViewModel {
     }
 
     public void onSortTypeItemClick(SortTypeUI sortType) {
-        selectedSortType = sortType.getSortType();
+        selectedSortType = sortType.getType();
         updateSortTypes();
         updateUiState();
     }
@@ -54,8 +56,12 @@ public class SortViewModel extends BaseBottomSheetViewModel {
         return uiStateLiveDate;
     }
 
+    public void log(String message) {
+        Log.d("SortViewModel", message);
+    }
+
     private void updateSortTypes() {
-        final SortType[] sortTypes = SortType.values();
+        final String[] sortTypes = SortType.values();
         final List<SortTypeUI> sortTypesUi = Arrays.stream(sortTypes)
                 .map(sortType -> new SortTypeUI(sortType, Objects.equals(sortType, selectedSortType)))
                 .collect(Collectors.toList());
@@ -68,7 +74,9 @@ public class SortViewModel extends BaseBottomSheetViewModel {
     }
 
     static class UiState {
+
         public boolean isApplyEnable = false;
-        @Nullable public SortType newSelectedSortType = null;
+        @Nullable
+        public String newSelectedSortType = null;
     }
 }

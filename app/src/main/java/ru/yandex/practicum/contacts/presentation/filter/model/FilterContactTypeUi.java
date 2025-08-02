@@ -2,39 +2,49 @@ package ru.yandex.practicum.contacts.presentation.filter.model;
 
 import androidx.annotation.NonNull;
 
-public class FilterContactTypeUi {
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-    private final FilterContactType contactType;
-    private final boolean selected;
+public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeUi> {
 
-    public FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
-        this.contactType = contactType;
-        this.selected = selected;
+    private final String type;
+    private final boolean isSelected;
+
+    public FilterContactTypeUi(@NonNull String type, boolean isSelected) {
+        this.type = type;
+        this.isSelected = isSelected;
     }
 
-    public FilterContactType getContactType() {
-        return contactType;
+    public String getType() {
+        return type;
     }
 
     public boolean isSelected() {
-        return selected;
+        return isSelected;
+    }
+
+    public String createLogMessage() {
+        return "Выбран фильтр: " + type;
+    }
+
+    @Override
+    public boolean theSameAs(FilterContactTypeUi other) {
+        return this.type.equals(other.type);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof FilterContactTypeUi)) return false;
 
         FilterContactTypeUi that = (FilterContactTypeUi) o;
 
-        if (selected != that.selected) return false;
-        return contactType == that.contactType;
+        return isSelected == that.isSelected && type.equals(that.type);
     }
 
     @Override
     public int hashCode() {
-        int result = contactType.hashCode();
-        result = 31 * result + (selected ? 1 : 0);
+        int result = type.hashCode();
+        result = 31 * result + (isSelected ? 1 : 0);
         return result;
     }
 }

@@ -14,11 +14,11 @@ import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
 public class MainState {
 
-    private final SortType defaultSortType = SortType.BY_NAME;
+    private final String defaultSortType = SortType.BY_NAME;
     private final Set<ContactType> defaultContactTypes = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ContactType.values())));
 
     private List<MergedContact> allContacts = Collections.emptyList();
-    private SortType sortType = defaultSortType;
+    private String sortType = defaultSortType;
     private Set<ContactType> contactTypes = new HashSet<>(defaultContactTypes);
     private String query = "";
 
@@ -32,16 +32,16 @@ public class MainState {
     }
 
     @NonNull
-    public SortType getDefaultSortType() {
+    public String getDefaultSortType() {
         return defaultSortType;
     }
 
     @NonNull
-    public SortType getSortType() {
+    public String getSortType() {
         return sortType;
     }
 
-    public void setSortType(@NonNull SortType sortType) {
+    public void setSortType(@NonNull String sortType) {
         this.sortType = sortType;
     }
 

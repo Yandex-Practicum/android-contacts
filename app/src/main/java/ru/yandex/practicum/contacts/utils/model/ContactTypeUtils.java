@@ -33,7 +33,7 @@ public class ContactTypeUtils {
         }
     }
 
-    public static FilterContactType toFilterContactType(ContactType type) {
+    public static String toFilterContactType(ContactType type) {
         switch (type) {
             case TELEGRAM:
                 return FilterContactType.TELEGRAM;

@@ -3,22 +3,19 @@ package ru.yandex.practicum.contacts.presentation.main;
 import androidx.annotation.NonNull;
 
 import java.util.List;
+import java.util.Objects;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class ContactUi {
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
     private final String photo;
     private final List<ContactType> types;
 
-    public ContactUi(
-            @NonNull String name,
-            @NonNull String phone,
-            @NonNull String photo,
-            @NonNull List<ContactType> types
-    ) {
+    public ContactUi(@NonNull String name, @NonNull String phone, @NonNull String photo, @NonNull List<ContactType> types) {
         this.name = name;
         this.phone = phone;
         this.photo = photo;
@@ -42,24 +39,24 @@ public class ContactUi {
     }
 
     @Override
+    public boolean theSameAs(ContactUi other) {
+        // Можно использовать любой способ сравнения, вот — через hashCode, как в оригинале:
+        return this.hashCode() == other.hashCode();
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
+        if (!(o instanceof ContactUi)) return false;
         ContactUi contact = (ContactUi) o;
-
-        if (!name.equals(contact.name)) return false;
-        if (!phone.equals(contact.phone)) return false;
-        if (!photo.equals(contact.photo)) return false;
-        return types.equals(contact.types);
+        return name.equals(contact.name) &&
+                phone.equals(contact.phone) &&
+                photo.equals(contact.photo) &&
+                types.equals(contact.types);
     }
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + phone.hashCode();
-        result = 31 * result + photo.hashCode();
-        result = 31 * result + types.hashCode();
-        return result;
+        return Objects.hash(name, phone, photo, types);
     }
 }
