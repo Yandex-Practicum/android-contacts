@@ -24,12 +24,21 @@ import java.util.Objects;
 import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemContactBinding;
 
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
+// import ru.yandex.practicum.contacts.model.ContactUi; // ЭТО ЛИШНЕЕ, Будет ошибка!!!
+//import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface; // Не нужно, это в самом классе
+
 public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHolder> {
 
+    //private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
+    //        new AdapterListUpdateCallback(this),
+    //        new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+    //);
     private final AsyncListDiffer<ContactUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<ContactUi>()).build()
     );
+
 
     @NonNull
     @Override
@@ -93,22 +102,22 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<ContactUi> {
-
-        @Override
-        public boolean areItemsTheSame(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
-            return oldItem.hashCode() == newItem.hashCode();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
-            return oldItem.equals(newItem);
-        }
-
-        @Nullable
-        @Override
-        public Object getChangePayload(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
-            return newItem;
-        }
-    }
+//    static class ListDiffCallback extends DiffUtil.ItemCallback<ContactUi> {
+//
+//        @Override
+//        public boolean areItemsTheSame(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
+//            return oldItem.hashCode() == newItem.hashCode();
+//        }
+//
+//        @Override
+//        public boolean areContentsTheSame(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
+//            return oldItem.equals(newItem);
+//        }
+//
+//        @Nullable
+//        @Override
+//        public Object getChangePayload(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
+//            return newItem;
+//        }
+//    }
 }
