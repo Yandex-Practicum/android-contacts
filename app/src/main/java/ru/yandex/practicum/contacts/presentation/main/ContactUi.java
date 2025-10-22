@@ -1,65 +1,90 @@
-package ru.yandex.practicum.contacts.presentation.main;
+package ru.yandex.practicum.contacts.presentation.sort;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.AdapterListUpdateCallback;
+import androidx.recyclerview.widget.AsyncDifferConfig;
+import androidx.recyclerview.widget.AsyncListDiffer;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
+import java.util.function.Consumer;
 
-import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.R;
+import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
+import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 
-public class ContactUi {
+public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
 
-    private final String name;
-    private final String phone;
-    private final String photo;
-    private final List<ContactType> types;
+    private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
+            new AdapterListUpdateCallback(this),
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<SortTypeUI>()).build()
+    );
 
-    public ContactUi(
-            @NonNull String name,
-            @NonNull String phone,
-            @NonNull String photo,
-            @NonNull List<ContactType> types
-    ) {
-        this.name = name;
-        this.phone = phone;
-        this.photo = photo;
-        this.types = types;
+    private final Consumer<SortTypeUI> clickListener;
+
+    public SortTypeAdapter(Consumer<SortTypeUI> clickListener) {
+        this.clickListener = clickListener;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getPhoto() {
-        return photo;
-    }
-
-    public List<ContactType> getTypes() {
-        return types;
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        final ItemSortBinding binding = ItemSortBinding.inflate(inflater, parent, false);
+        return new ViewHolder(binding, clickListener);
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ContactUi contact = (ContactUi) o;
-
-        if (!name.equals(contact.name)) return false;
-        if (!phone.equals(contact.phone)) return false;
-        if (!photo.equals(contact.photo)) return false;
-        return types.equals(contact.types);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.bind(differ.getCurrentList().get(position));
     }
 
     @Override
-    public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + phone.hashCode();
-        result = 31 * result + photo.hashCode();
-        result = 31 * result + types.hashCode();
-        return result;
+    public int getItemCount() {
+        return differ.getCurrentList().size();
+    }
+
+    public void setItems(List<SortTypeUI> items) {
+        differ.submitList(items);
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
+
+        private final ItemSortBinding binding;
+
+        private SortTypeUI data;
+
+        public ViewHolder(@NonNull ItemSortBinding binding, Consumer<SortTypeUI> clickListener) {
+            super(binding.getRoot());
+            this.binding = binding;
+            this.binding.getRoot().setOnClickListener(v -> clickListener.accept(data));
+        }
+
+        public void bind(SortTypeUI data) {
+            this.data = data;
+            final int sortResId = resource(data.getSortType());
+            binding.text.setText(sortResId);
+            binding.selected.setVisibility(data.isSelected() ? View.VISIBLE : View.GONE);
+        }
+
+        private int resource(SortType sortType) {
+            switch (sortType) {
+                case BY_NAME:
+                    return R.string.sort_by_name;
+                case BY_NAME_REVERSED:
+                    return R.string.sort_by_name_reversed;
+                case BY_SURNAME:
+                    return R.string.sort_by_surname;
+                case BY_SURNAME_REVERSED:
+                    return R.string.sort_by_surname_reversed;
+                default:
+                    throw new IllegalArgumentException("Not supported SortType");
+            }
+        }
     }
 }
