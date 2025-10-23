@@ -19,6 +19,21 @@ import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 
+package ru.yandex.practicum.contacts.presentation.sort;
+
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
+
+public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
+
+    // Заменяем на универсальный BaseListDiffCallback
+    private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
+            new AdapterListUpdateCallback(this),
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<SortTypeUI>()).build()
+    );
+
+    // УДАЛЯЕМ статический класс ListDiffCallback из этого адаптера
+}
+
 public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
