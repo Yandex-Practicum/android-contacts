@@ -5,8 +5,9 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
-public class ContactUi {
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -62,4 +63,9 @@ public class ContactUi {
         result = 31 * result + types.hashCode();
         return result;
     }
+    public boolean theSameAs(ContactUi contactUi) {
+        return this.getName().equals(contactUi.getName()) && this.getPhone().equals(contactUi.getPhone()) && this.getPhone().equals(contactUi.getPhoto()) && this.getTypes().equals(contactUi.getTypes());
+
+    }
+
 }
