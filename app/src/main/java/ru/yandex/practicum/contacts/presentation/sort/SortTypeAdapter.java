@@ -1,15 +1,13 @@
 package ru.yandex.practicum.contacts.presentation.sort;
-
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.AdapterListUpdateCallback;
 import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.AsyncListDiffer;
-import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -23,7 +21,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
 
     private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<SortTypeUI>()).build()
     );
 
     private final Consumer<SortTypeUI> clickListener;
@@ -68,9 +66,9 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
 
         public void bind(SortTypeUI data) {
             this.data = data;
-            final int sortResId = resource(data.getSortType());
+            final int sortResId = resource(data.sortType());
             binding.text.setText(sortResId);
-            binding.selected.setVisibility(data.isSelected() ? View.VISIBLE : View.GONE);
+            binding.selected.setVisibility(data.selected() ? View.VISIBLE : View.GONE);
         }
 
         private int resource(SortType sortType) {
@@ -89,22 +87,22 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<SortTypeUI> {
+    //static class ListDiffCallback extends DiffUtil.ItemCallback<SortTypeUI> {
 
-        @Override
-        public boolean areItemsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
-            return oldItem.getSortType() == newItem.getSortType();
-        }
+      //  @Override
+        //public boolean areItemsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+          //  return oldItem.getSortType() == newItem.getSortType();
+        //}
 
-        @Override
-        public boolean areContentsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
-            return oldItem.equals(newItem);
-        }
+        //@Override
+        //public boolean areContentsTheSame(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+          //  return oldItem.equals(newItem);
+        //}
 
-        @Nullable
-        @Override
-        public Object getChangePayload(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
-            return newItem;
-        }
-    }
+        //@Nullable
+       // @Override
+        //public Object getChangePayload(@NonNull SortTypeUI oldItem, @NonNull SortTypeUI newItem) {
+          //  return newItem;
+        //}
+   // }
 }
