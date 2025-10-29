@@ -1,12 +1,13 @@
 package ru.yandex.practicum.contacts.presentation.main;
 
-import androidx.annotation.NonNull;
+import java.util.Objects;
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 
 import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
 
-public class ContactUi {
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -14,10 +15,10 @@ public class ContactUi {
     private final List<ContactType> types;
 
     public ContactUi(
-            @NonNull String name,
-            @NonNull String phone,
-            @NonNull String photo,
-            @NonNull List<ContactType> types
+           String name,
+            String phone,
+             String photo,
+            List<ContactType> types
     ) {
         this.name = name;
         this.phone = phone;
@@ -56,10 +57,10 @@ public class ContactUi {
 
     @Override
     public int hashCode() {
-        int result = name.hashCode();
-        result = 31 * result + phone.hashCode();
-        result = 31 * result + photo.hashCode();
-        result = 31 * result + types.hashCode();
-        return result;
+
+        return Objects.hash(name, phone, photo, types);
+    }
+    public boolean theSameAs(ContactUi other) {
+        return this.hashCode() == other.hashCode();
     }
 }

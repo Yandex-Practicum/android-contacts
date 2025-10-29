@@ -28,7 +28,7 @@ public class SortViewModel extends BaseBottomSheetViewModel {
     }
 
     public void onSortTypeItemClick(SortTypeUI sortType) {
-        selectedSortType = sortType.getSortType();
+        selectedSortType = sortType.sortType();
         updateSortTypes();
         updateUiState();
     }
