@@ -21,12 +21,13 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 
 public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<FilterContactTypeUi>()).build() //заменила на
     );
 
     private final Consumer<FilterContactTypeUi> clickListener;
@@ -81,27 +82,10 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
                 final ContactType contactType = FilterContactTypeUtils.toContactType(data.getContactType());
                 final int iconRes = ContactTypeUtils.getIconRes(contactType);
                 binding.logo.setVisibility(View.VISIBLE);
-                binding.logo.setImageResource(iconRes);
+                binding.logo.setImageResource(iconRes); //
             }
         }
     }
 
-    static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
 
-        @Override
-        public boolean areItemsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return oldItem.getContactType() == newItem.getContactType();
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return oldItem.equals(newItem);
-        }
-
-        @Nullable
-        @Override
-        public Object getChangePayload(@NonNull FilterContactTypeUi oldItem, @NonNull FilterContactTypeUi newItem) {
-            return newItem;
-        }
-    }
 }
