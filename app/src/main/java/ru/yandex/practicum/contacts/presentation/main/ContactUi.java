@@ -6,7 +6,9 @@ import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
 
-public class ContactUi {
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+
+public class ContactUi implements ListDiffInterface<ContactUi> {
 
     private final String name;
     private final String phone;
@@ -39,6 +41,13 @@ public class ContactUi {
 
     public List<ContactType> getTypes() {
         return types;
+    }
+
+    // Реализуем метод theSameAs() из интерфейса
+    @Override
+    public boolean theSameAs(ContactUi other) {
+        // Используем логику сравнения через hashCode(), как было указано в задании
+        return this.hashCode() == other.hashCode();
     }
 
     @Override
