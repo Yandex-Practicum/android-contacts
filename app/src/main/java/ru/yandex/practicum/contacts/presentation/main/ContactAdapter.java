@@ -106,5 +106,5 @@ public class        ContactAdapter extends RecyclerView.Adapter<ContactAdapter.V
         public Object getChangePayload(@NonNull ContactUi oldItem, @NonNull ContactUi newItem) {
             return newItem;
         }
-    }
+    } //
 }
