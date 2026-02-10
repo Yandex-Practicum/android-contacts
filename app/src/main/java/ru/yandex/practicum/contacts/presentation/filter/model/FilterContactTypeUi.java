@@ -1,47 +1,47 @@
 package ru.yandex.practicum.contacts.presentation.filter.model;
 
 import androidx.annotation.NonNull;
-
+//
 import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
-
+//
 public class FilterContactTypeUi implements ListDiffInterface<FilterContactTypeUi> {
-
+//
     private final FilterContactType contactType;
     private final boolean selected;
-
+//
     public FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
-        this.contactType = contactType;
+        this.contactType = contactType;//
         this.selected = selected;
     }
-
+//
     public FilterContactType getContactType() {
-        return contactType;
+        return contactType;//
     }
-
+//
     public boolean isSelected() {
-        return selected;
+        return selected;//
     }
-
+//
     // Добавляем метод theSameAs() из интерфейса ListDiffInterface
     @Override
     public boolean theSameAs(FilterContactTypeUi item) {
-        return this.contactType == item.contactType;
+        return this.contactType == item.contactType;//
     }
-
+//
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        if (this == o) return true;//
         if (o == null || getClass() != o.getClass()) return false;
-
-        FilterContactTypeUi that = (FilterContactTypeUi) o;
+//
+        FilterContactTypeUi that = (FilterContactTypeUi) o;//
 
         if (selected != that.selected) return false;
-        return contactType == that.contactType;
+        return contactType == that.contactType;//
     }
-
+//
     @Override
     public int hashCode() {
-        int result = contactType.hashCode();
+        int result = contactType.hashCode();//
         result = 31 * result + (selected ? 1 : 0);
         return result;
     }

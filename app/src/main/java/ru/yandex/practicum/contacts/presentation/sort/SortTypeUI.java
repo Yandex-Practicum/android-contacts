@@ -4,47 +4,47 @@ import androidx.annotation.NonNull;
 
 import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
+//
+public class SortTypeUI implements ListDiffInterface<SortTypeUI> {//
 
-public class SortTypeUI implements ListDiffInterface<SortTypeUI> {
-
-    private final SortType sortType;
-    private final boolean selected;
-
+    private final SortType sortType;//
+    private final boolean selected;//
+//
     public SortTypeUI(@NonNull SortType sortType, boolean selected) {
-        this.sortType = sortType;
-        this.selected = selected;
+        this.sortType = sortType;//
+        this.selected = selected;//
     }
-
+//
     public SortType getSortType() {
-        return sortType;
+        return sortType;//
     }
-
+//
     public boolean isSelected() {
-        return selected;
+        return selected;//
     }
 
-    // Добавляем метод theSameAs() из интерфейса ListDiffInterface
+    // Добавляем метод theSameAs() из интерфейса ListDiffInterface//
     @Override
-    public boolean theSameAs(SortTypeUI item) {
-        return this.sortType == item.sortType;
+    public boolean theSameAs(SortTypeUI item) {//
+        return this.sortType == item.sortType;//
     }
-
+//
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o) {//
+        if (this == o) return true;//
+        if (o == null || getClass() != o.getClass()) return false;//
+//
+        SortTypeUI that = (SortTypeUI) o;//
 
-        SortTypeUI that = (SortTypeUI) o;
-
-        if (selected != that.selected) return false;
-        return sortType == that.sortType;
+        if (selected != that.selected) return false;//
+        return sortType == that.sortType;//
     }
-
+//
     @Override
-    public int hashCode() {
-        int result = sortType.hashCode();
-        result = 31 * result + (selected ? 1 : 0);
-        return result;
+    public int hashCode() {//
+        int result = sortType.hashCode();//
+        result = 31 * result + (selected ? 1 : 0);//
+        return result;//
     }
-}
+}//
 //
