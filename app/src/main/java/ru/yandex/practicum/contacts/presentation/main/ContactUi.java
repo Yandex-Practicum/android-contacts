@@ -70,3 +70,4 @@ public class ContactUi implements ListDiffInterface<ContactUi> {
         return result;
     }
 }
+//

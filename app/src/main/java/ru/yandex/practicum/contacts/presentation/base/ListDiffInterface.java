@@ -6,3 +6,4 @@ public interface ListDiffInterface<T> {
     @Override
     boolean equals(Object obj);
 }
+//
