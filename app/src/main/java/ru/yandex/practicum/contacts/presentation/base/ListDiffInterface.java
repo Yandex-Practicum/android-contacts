@@ -4,4 +4,7 @@ public interface ListDiffInterface<T> {
     boolean theSameAs(T type1);
 
     boolean equals(Object object);
+
+    // 050526 - версия 2
+
 }
