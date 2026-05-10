@@ -2,19 +2,16 @@ package ru.yandex.practicum.contacts.presentation.main;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.IdRes;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.badge.BadgeUtils;
+import com.google.android.material.badge.ExperimentalBadgeUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,17 +23,26 @@ import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ActivityMainBinding;
 import ru.yandex.practicum.contacts.model.ContactType;
 import ru.yandex.practicum.contacts.presentation.filter.FilterContactTypeDialogFragment;
-import ru.yandex.practicum.contacts.presentation.sort.SortDialogFragment;
 import ru.yandex.practicum.contacts.presentation.main.model.MenuClick;
+import ru.yandex.practicum.contacts.presentation.sort.SortDialogFragment;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
 import ru.yandex.practicum.contacts.ui.widget.DividerItemDecoration;
+import ru.yandex.practicum.contacts.utils.android.Debouncer;
+import ru.yandex.practicum.contacts.utils.android.OnDebounceListener;
 import ru.yandex.practicum.contacts.utils.widget.EditTextUtils;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+
 @SuppressLint("UnsafeExperimentalUsageError")
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnDebounceListener {
 
     public static final String SORT_TAG = "SORT_TAG";
     public static final String FILTER_TAG = "FILTER_TAG";
+    final Debouncer debouncer = new Debouncer(this);
 
     private ActivityMainBinding binding;
     private MainViewModel viewModel;
@@ -56,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         adapter = new ContactAdapter();
         binding.recycler.setAdapter(adapter);
 
-        final DividerItemDecoration decoration = new DividerItemDecoration(this, R.drawable.item_decoration_72dp, DividerItemDecoration.VERTICAL);
+        final DividerItemDecoration decoration = new DividerItemDecoration(this, R.drawable.item_decoration_72dp,
+                DividerItemDecoration.VERTICAL);
         binding.recycler.addItemDecoration(decoration);
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
@@ -64,9 +71,15 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getUiStateLiveDate().observe(this, this::updateUiState);
 
         createBadges();
+        bindSearch();
         EditTextUtils.addTextListener(binding.searchLayout.searchText, query -> viewModel.updateSearchText(query.toString()));
-        EditTextUtils.debounce(binding.searchLayout.searchText, query -> viewModel.search());
-        binding.searchLayout.resetButton.setOnClickListener(view -> clearSearch());
+
+        binding.searchLayout.resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearSearch();
+            }
+        });
 
         getSupportFragmentManager().setFragmentResultListener(SortDialogFragment.REQUEST_KEY, this, (requestKey, result) -> {
             final SortType newSortType = SortDialogFragment.from(result);
@@ -79,6 +92,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    public void bindSearch() {
+        final Debouncer debouncer = new Debouncer(this);
+        binding.searchLayout.searchText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                debouncer.updateValue(s.toString());
+            }
+        });
+    }
+
+    @ExperimentalBadgeUtils
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -115,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         viewModel.onBackPressed();
     }
 
@@ -173,7 +206,8 @@ public class MainActivity extends AppCompatActivity {
         badges.put(R.id.menu_search, createBadge());
     }
 
-    private void attachBadges(){
+    @ExperimentalBadgeUtils
+    private void attachBadges() {
         for (Map.Entry<Integer, BadgeDrawable> entry : badges.entrySet()) {
             BadgeUtils.attachBadgeDrawable(entry.getValue(), binding.toolbar, entry.getKey());
         }
@@ -191,7 +225,8 @@ public class MainActivity extends AppCompatActivity {
         viewModel.search();
     }
 
-    private void toast(@StringRes int res) {
-        Toast.makeText(this, res, Toast.LENGTH_SHORT).show();
+    @Override
+    public void onDebounce() {
+        viewModel.search();
     }
 }
