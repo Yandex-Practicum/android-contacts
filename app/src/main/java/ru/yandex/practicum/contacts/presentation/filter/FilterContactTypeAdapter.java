@@ -5,11 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+// Правки шаг 4
+// import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.AdapterListUpdateCallback;
 import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.AsyncListDiffer;
-import androidx.recyclerview.widget.DiffUtil;
+// Правки шаг 4
+// import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -21,12 +23,15 @@ import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactType;
 import ru.yandex.practicum.contacts.presentation.filter.model.FilterContactTypeUi;
 import ru.yandex.practicum.contacts.utils.model.ContactTypeUtils;
 import ru.yandex.practicum.contacts.utils.model.FilterContactTypeUtils;
+// Правки шаг 4
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 
 public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContactTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<FilterContactTypeUi> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            // new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<FilterContactTypeUi>()).build()
     );
 
     private final Consumer<FilterContactTypeUi> clickListener;
@@ -85,7 +90,7 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
             }
         }
     }
-
+/* Правки шаг 4
     static class ListDiffCallback extends DiffUtil.ItemCallback<FilterContactTypeUi> {
 
         @Override
@@ -104,4 +109,6 @@ public class FilterContactTypeAdapter extends RecyclerView.Adapter<FilterContact
             return newItem;
         }
     }
+
+ */
 }

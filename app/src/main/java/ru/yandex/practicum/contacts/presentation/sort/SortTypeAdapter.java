@@ -5,11 +5,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+// правки шаг 4
+// import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.AdapterListUpdateCallback;
 import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.AsyncListDiffer;
-import androidx.recyclerview.widget.DiffUtil;
+// правки шаг 4
+// import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -18,12 +20,16 @@ import java.util.function.Consumer;
 import ru.yandex.practicum.contacts.R;
 import ru.yandex.practicum.contacts.databinding.ItemSortBinding;
 import ru.yandex.practicum.contacts.presentation.sort.model.SortType;
+// Правки шаг 4
+import ru.yandex.practicum.contacts.presentation.base.BaseListDiffCallback;
 
 public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHolder> {
 
     private final AsyncListDiffer<SortTypeUI> differ = new AsyncListDiffer<>(
             new AdapterListUpdateCallback(this),
-            new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            // правки ша 4
+            // new AsyncDifferConfig.Builder<>(new ListDiffCallback()).build()
+            new AsyncDifferConfig.Builder<>(new BaseListDiffCallback<SortTypeUI>()).build()
     );
 
     private final Consumer<SortTypeUI> clickListener;
@@ -89,6 +95,7 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
         }
     }
 
+    /* Правки шаг 4
     static class ListDiffCallback extends DiffUtil.ItemCallback<SortTypeUI> {
 
         @Override
@@ -107,4 +114,6 @@ public class SortTypeAdapter extends RecyclerView.Adapter<SortTypeAdapter.ViewHo
             return newItem;
         }
     }
+
+     */
 }
