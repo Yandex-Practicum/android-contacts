@@ -60,17 +60,34 @@ public class FilterContactTypeViewModel extends BaseBottomSheetViewModel {
         return uiStateLiveDate;
     }
 
+    private FilterContactTypeUi createFilterContactType(String type) {
+        ContactType contactType = ContactType.valueOf(type);
+
+        return new FilterContactTypeUi(
+                ContactTypeUtils.toFilterContactType(contactType),
+                selectedFilterContactTypes.contains(contactType)
+        );
+    }
+
+    private FilterContactTypeUi createAllSelectedItem(String[] types) {
+        boolean allSelected = selectedFilterContactTypes.size() == types.length;
+
+        return new FilterContactTypeUi(
+                FilterContactType.ALL,
+                allSelected
+        );
+    }
+
     private void updateFilterContactTypes() {
-        final List<FilterContactTypeUi> filterContactTypesUi = new ArrayList<>();
-        final boolean allSelected = selectedFilterContactTypes.size() == ContactType.values().length;
-        filterContactTypesUi.add(new FilterContactTypeUi(FilterContactType.ALL, allSelected));
-        final List<FilterContactTypeUi> collect = Arrays.stream(ContactType.values())
-                .map(contactType -> new FilterContactTypeUi(
-                        ContactTypeUtils.toFilterContactType(contactType),
-                        selectedFilterContactTypes.contains(contactType)
-                ))
-                .collect(Collectors.toList());
-        filterContactTypesUi.addAll(collect);
+        String[] types = ContactType.getContactTypes();
+
+        ArrayList<FilterContactTypeUi> filterContactTypesUi = new ArrayList<>();
+        filterContactTypesUi.add(createAllSelectedItem(types));
+
+        for (String type : types) {
+            filterContactTypesUi.add(createFilterContactType(type));
+        }
+
         filterContactTypesLiveDate.setValue(filterContactTypesUi);
     }
 

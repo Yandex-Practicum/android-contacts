@@ -7,5 +7,18 @@ public enum ContactType {
     SIGNAL,
     THREEMA,
     PHONE,
-    EMAIL
+    EMAIL;
+
+    public static String[] getContactTypes() {
+        ContactType[] types = values();
+        String[] result = new String[types.length];
+
+        for (int i = 0; i < types.length; i++) {
+            result[i] = types[i].name();
+        }
+
+        return result;
+    }
 }
+
+
