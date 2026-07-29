@@ -6,7 +6,14 @@ import java.util.List;
 
 import ru.yandex.practicum.contacts.model.ContactType;
 
-public class ContactUi {
+import ru.yandex.practicum.contacts.presentation.base.ListDiffInterface;
+
+public class ContactUi implements ListDiffInterface<ContactUi>{
+
+    @Override
+    public boolean theSameUs(ContactUi newItem){
+        return this.hashCode() == newItem.hashCode();
+    }
 
     private final String name;
     private final String phone;
