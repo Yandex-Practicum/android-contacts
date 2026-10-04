@@ -1,13 +1,14 @@
 package ru.yandex.practicum.contacts.presentation.filter.model;
 
 import androidx.annotation.NonNull;
+import java.util.Objects;
 
 public class FilterContactTypeUi {
 
     private final FilterContactType contactType;
     private final boolean selected;
 
-    public FilterContactTypeUi(@NonNull FilterContactType contactType, boolean selected) {
+    public FilterContactTypeUi(FilterContactType contactType, boolean selected) {
         this.contactType = contactType;
         this.selected = selected;
     }
@@ -18,6 +19,12 @@ public class FilterContactTypeUi {
 
     public boolean isSelected() {
         return selected;
+    }
+
+    // Находится строго НАД методом equals(Object o)
+    @Override
+    public boolean theSameAs(@NonNull FilterContactTypeUi newItem) {
+        return this.contactType == newItem.getContactType();
     }
 
     @Override
@@ -33,8 +40,6 @@ public class FilterContactTypeUi {
 
     @Override
     public int hashCode() {
-        int result = contactType.hashCode();
-        result = 31 * result + (selected ? 1 : 0);
-        return result;
+        return Objects.hash(contactType, selected);
     }
 }
